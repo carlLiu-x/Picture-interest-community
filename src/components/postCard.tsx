@@ -1,5 +1,5 @@
 import react from 'react';
-import './css/mainPage.css';
+import '../css/mainPage.css';
 import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 

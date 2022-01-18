@@ -1,12 +1,12 @@
 import React from 'react';
-import './css/Navigation.css'
+import '../css/Navigation.css'
 import {  Input ,Layout, Space} from 'antd';
-import HomeURL from './icon/home.png';
-import AirplaneURL from './icon/airplane.png';
-import AddURL from './icon/add.png';
-import CompassURL from './icon/compass.png';
-import LoveURL from './icon/love.png';
-import UserURL from './icon/user.png';
+import HomeURL from '../icon/home.png';
+import AirplaneURL from '../icon/airplane.png';
+import AddURL from '../icon/add.png';
+import CompassURL from '../icon/compass.png';
+import LoveURL from '../icon/love.png';
+import UserURL from '../icon/user.png';
 
 const { Header } = Layout;
 const {Search} = Input;
