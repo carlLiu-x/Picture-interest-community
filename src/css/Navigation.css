@@ -1,0 +1,17 @@
+.navigation_icon{
+    height: 30px;
+    width: 30px;
+    position:relative;
+    top: 8px;
+    left:300px;
+}
+
+
+
+  #search {
+    width:600px;
+    height:31px;
+    position:relative;
+    top:15px;
+    left:200px;
+  }
