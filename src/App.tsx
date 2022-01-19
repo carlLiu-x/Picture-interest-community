@@ -1,0 +1,20 @@
+//路由控制文件
+//author:刘昌镐  输出：App组件用于路由控制
+import React from 'react';
+import { BrowserRouter,Route,Routes} from 'react-router-dom';
+import MainPage from './components/mainPage';
+import PostCard from './components/postCard';
+
+class App extends React.Component{
+    render(): React.ReactNode {
+        return(
+         
+            <BrowserRouter>
+                <Routes>
+                 <Route path='/homepage' element={<MainPage></MainPage>}/>
+                </Routes>
+                </BrowserRouter>            
+        )
+    }
+}
+ export default App
