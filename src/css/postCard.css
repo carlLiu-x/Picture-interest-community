@@ -1,0 +1,59 @@
+.Album{
+   
+    left:100px;
+    right:100px;
+    top: 200px;
+    bottom: 200px;
+
+}
+.postCard{
+    display: flex;
+    position:relative;
+    left:0;
+    flex-direction: column;
+    align-content: space-around;
+
+
+}
+.Carousel{
+    width: 600px;
+    position:relative;
+    margin-top:10px;
+   
+   
+    margin-left: -24px;
+
+}
+#userInformation{
+    display: flex;
+    justify-content: space-between;
+    position:relative;
+    margin-left:-24px;
+    margin-top:-20px;
+}
+#postCard_action{
+    display:flex;
+    position:relative;
+    margin-top:15px;
+    margin-left:-20px;
+
+}
+.postcard_icon{
+    width:30px;
+    height:30px;
+    margin-left:20px;
+
+}
+.comment_information{
+    margin-left:-20px;
+    margin-top: -5px;
+}
+#comment{
+    width:600px;
+    display: flex;
+    margin-left:-30px;
+    justify-content: space-between;
+}
+.post_picture{
+     margin-left: -25px;
+}

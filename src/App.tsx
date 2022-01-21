@@ -3,7 +3,7 @@
 import React from 'react';
 import { BrowserRouter,Route,Routes} from 'react-router-dom';
 import MainPage from './components/mainPage';
-import PostCard from './components/postCard';
+import PostCardD from './components/postCard_detailed';
 
 class App extends React.Component{
     render(): React.ReactNode {
@@ -12,6 +12,7 @@ class App extends React.Component{
             <BrowserRouter>
                 <Routes>
                  <Route path='/homepage' element={<MainPage></MainPage>}/>
+                 <Route path='/' element={<PostCardD></PostCardD>}></Route>
                 </Routes>
                 </BrowserRouter>            
         )
