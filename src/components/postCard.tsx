@@ -4,21 +4,25 @@ import { Card, Avatar } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import {Image} from 'antd';
 import '../css/postCard.css';
+import PostCardD from './postCard_detailed';
 
 
 const { Meta } = Card;
 
-class PostCard extends React.Component {
-    constructor(props:any){
+class PostCard extends React.Component<any,any> {
+  public childRef:any = React.createRef();  
+  constructor(props:any){
         super(props);
         this.state = {
-
-
+          isActive : false,
         }
+       
+
     }
 
     render(): React.ReactNode {
         return(
+          <div>
             <Card
             style={{ width: 650,display:'inline-block'}}
             // cover={
@@ -39,14 +43,22 @@ class PostCard extends React.Component {
               description="This is the description"
             />
             {/* <Album className='Album'></Album> */}
-            <Image width={650} className='post_picture' preview={false}  height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+            <Image width={650} className='post_picture' preview={false}  height={400} onClick={this.showModal}  src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
             
           </Card>
+          <PostCardD onRef={this.onChildRef}></PostCardD>
+          </div>
       
         );
     }
-
-}
+    
+    showModal = () =>{
+      this.childRef.setVisible();
+    }
+    onChildRef = (child:any) =>{
+      this.childRef = child;
+    }
+  }
 
 // function Album(props: any) {
 //   const [visible, setVisible] = useState(false);

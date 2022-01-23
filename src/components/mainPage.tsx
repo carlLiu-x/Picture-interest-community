@@ -30,8 +30,7 @@ class MainPage extends React.Component{
                     <PostCard />
                     <PostCard />
                     <PostCard />
-
-
+                    
                 </Space>
               
              

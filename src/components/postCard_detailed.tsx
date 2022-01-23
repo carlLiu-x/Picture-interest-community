@@ -11,36 +11,43 @@ import postURL_1 from "../icon/post.png";
 
  
 
-class PostCardD extends React.Component {
-  state = {
-    visible: true,
-    disabled: true,
-  };
+class PostCardD extends React.Component<any,any> {
+  
+  constructor(props:any){
+    super(props);
+    this.state={
+      visible: this.props.visible,
+    }
+  }
+  
+  
+  handleCancel = () =>{
+  this.setState({visible:!this.state.visible})
+  this.forceUpdate();
+  }
+  setVisible = () =>{
+    this.setState({visible:!this.state.visible})
+  }
+  componentDidMount(){
+    this.props.onRef(this)
+  }
 
-  draggleRef = React.createRef();
-
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
-
-  onStart = (event: any) => {
-   
-  };
 
   render() {
-    const {disabled, visible } = this.state;
+   
+    
     return (
       <>
         <Modal
-          visible={visible}
+          visible={this.state.visible}
           footer={null}
-          width={600}  
-          closable={false}
+          width={600}
+          closable={true}
           centered={true}
-          maskClosable={false}
-         
+          destroyOnClose = {true}
+          onCancel={this.handleCancel}
+          maskClosable={true}
+          
         >
             <div className='postCard'>
               <div id="userInformation">
@@ -59,11 +66,11 @@ class PostCardD extends React.Component {
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
                
               
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
               
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
                
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" /> 
               
             </Carousel>
             <div id='postCard_action'>
@@ -89,4 +96,5 @@ class PostCardD extends React.Component {
 }
 
 export default PostCardD
+
 
