@@ -4,6 +4,8 @@ import React from 'react';
 import { BrowserRouter,Route,Routes} from 'react-router-dom';
 import MainPage from './components/mainPage';
 import PostCardD from './components/postCard_detailed';
+import EditPage from './components/editPage';
+import UserPage from './components/userPage';
 
 class App extends React.Component{
     render(): React.ReactNode {
@@ -11,10 +13,12 @@ class App extends React.Component{
          
             <BrowserRouter>
                 <Routes>
-                 <Route path='/homepage' element={<MainPage></MainPage>}/>
-                 <Route path='/' element={<PostCardD></PostCardD>}></Route>
+                    <Route path='/homepage' element={<MainPage></MainPage>}/>
+                    <Route path='/' element={<PostCardD></PostCardD>}></Route>
+                    <Route path='/edit' element={<EditPage></EditPage>}></Route>
+                    <Route path='/user' element={<UserPage></UserPage>}></Route>
                 </Routes>
-                </BrowserRouter>            
+            </BrowserRouter>            
         )
     }
 }

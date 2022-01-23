@@ -13,7 +13,7 @@ const { Header, Content, Footer } = Layout;
 ReactDOM.render(
   <Layout>
     <Navigation/>
-    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
+    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
      <App></App>
     </Content>
   </Layout>,
