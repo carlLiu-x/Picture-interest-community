@@ -1,3 +1,5 @@
+//主页组件
+//输出MainPage
 import React from 'react';
 import '../css/mainPage.css' 
 import {Menu,Space} from 'antd';
@@ -30,7 +32,6 @@ class MainPage extends React.Component{
                     <PostCard />
                     <PostCard />
                     <PostCard />
-
 
                 </Space>
               
