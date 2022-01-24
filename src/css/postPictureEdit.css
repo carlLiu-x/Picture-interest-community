@@ -1,0 +1,16 @@
+@import '~antd/dist/antd.css';
+.picture-edit{
+    background-color: white;
+    outline-style: solid;
+    outline-color: gray;
+    outline-width: thin;
+    min-width: 100px;
+}
+.picture-edit-item{
+    outline-style: solid;
+    outline-color: gray;
+    outline-width: thin;
+}
+.picture-edit-item-content{
+    margin-top: 50px;
+}

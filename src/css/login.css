@@ -1,0 +1,40 @@
+@import '~antd/dist/antd.css';
+.login-form {
+    width: 480px;
+    position: relative;
+    left: 35%;
+}
+.login-form-remember{
+    text-align: left;
+}
+.login-form-forgot{
+    float: right;
+}
+
+.login-form-guest{
+    text-align: center;
+}
+
+.login-form-button{
+    text-align: center;
+}
+
+.login-logo {
+    width: 480px;
+    position: relative;
+    text-align: center;
+    left: 35%;
+}
+.to-logon {
+    width: 480px;
+    position: relative;
+    text-align: center;
+    left: 35%;
+  }
+
+
+
+.whitespace {
+    min-height: 50px;
+
+}

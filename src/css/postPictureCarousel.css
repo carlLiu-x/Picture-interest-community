@@ -1,0 +1,28 @@
+@import '~antd/dist/antd.css';
+.picture-carousel-left-sider{
+    height: 50px;
+    text-align :center;
+    position: relative;
+    top: 290px;
+}
+.picture-carousel-mid-sider{
+    height: 500px;
+}
+.picture-carousel-right-sider{
+    height: 50px;
+    text-align :center;
+    position: relative;
+    top: 290px;
+}
+.picture-carousel{
+    background-color: white;
+    margin-top: 50px;
+}
+.Carousel{
+    height: 500px;
+}
+.carousel_image_type{
+    min-height: 480px;
+    max-height: 480px;
+    padding: 100px 220px 100px 220px;
+}

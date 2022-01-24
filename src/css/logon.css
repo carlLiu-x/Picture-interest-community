@@ -1,0 +1,19 @@
+@import '~antd/dist/antd.css';
+.logon-form {
+    width: 480px;
+    position: relative;
+    left: 35%;
+}
+.to-logon {
+    width: 480px;
+    position: relative;
+    text-align: center;
+    left: 35%;
+}
+.logon-form-button{
+    text-align: center;
+}
+
+.whitespace {
+    min-height: 50px;
+}
