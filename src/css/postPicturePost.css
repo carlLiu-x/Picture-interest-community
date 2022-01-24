@@ -1,0 +1,39 @@
+@import '~antd/dist/antd.css';
+.post-layout{
+    outline-style: solid;
+    outline-color: gray;
+    outline-width: thin;
+    background-color: white;
+}
+.avatar-content{
+    margin-top: 30px;
+    margin-left: 20px;
+    max-height: 50px;
+}
+.input-content{
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-height: 200px;
+}
+.submit-button{
+    max-height: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.position{
+    outline-style: solid;
+    outline-color: gray;
+    outline-width: thin;
+    margin-left: 150px;
+    max-width: 300px;
+    max-height: 30px;
+}
+.others{
+    outline-style: solid;
+    outline-color: gray;
+    outline-width: thin;
+    margin-left: 150px;
+    max-width: 300px;
+    max-height: 30px;
+}
