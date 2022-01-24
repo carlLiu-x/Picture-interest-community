@@ -14,7 +14,7 @@ class App extends React.Component{
                  <Route path='/homepage' element={<MainPage></MainPage>}>
                  
                  </Route>
-                 <Route path='/' element={<PostCardD></PostCardD>}></Route>
+                 
                  
                 </Routes>
                 </BrowserRouter>            

@@ -1,3 +1,5 @@
+//帖子的预览界面
+//输出 PostCard
 import React,{useState} from 'react';
 import '../css/mainPage.css';
 import { Card, Avatar } from 'antd';
