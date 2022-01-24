@@ -3,17 +3,21 @@
 import React from 'react';
 import { BrowserRouter,Route,Routes} from 'react-router-dom';
 import MainPage from './components/mainPage';
+import Log from './components/log';
 import PostCardD from './components/postCard_detailed';
+import PostPicture from './components/postPicture';
 
 class App extends React.Component{
     render(): React.ReactNode {
         return(
          
             <BrowserRouter>
+                <Log></Log>
                 <Routes>
                  <Route path='/homepage' element={<MainPage></MainPage>}>
-                 
+               
                  </Route>
+                 <Route path='/edit' element={<PostPicture></PostPicture>}></Route>
                  
                  
                 </Routes>

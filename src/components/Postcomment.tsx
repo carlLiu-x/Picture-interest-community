@@ -1,30 +1,31 @@
 import React,{createElement} from 'react';
 import { Comment,Avatar,Collapse,Tooltip,Form,Button,List,Input } from "antd";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import moment from 'moment';
 
 const { TextArea } = Input;
 
-// const CommentList = ({comments}) => (
-//     <List
-//       dataSource={comments}
-//       header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-//       itemLayout="horizontal"
-//       renderItem={props => <Comment {...props} />}
-//     />
-//   );
+const CommentList = ({comments}:any) => (
+    <List
+      dataSource={comments}
+      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+      itemLayout="horizontal"
+      //renderItem={props => <Comment {...props} />}
+    />
+  );
   
-//   const Editor = ({ onChange, onSubmit, submitting, value }) => (
-//     <>
-//       <Form.Item>
-//         <TextArea rows={4} onChange={onChange} value={value} />
-//       </Form.Item>
-//       <Form.Item>
-//         <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-//           添加评论
-//         </Button>
-//       </Form.Item>
-//     </>
-//   );
+  const Editor = ({ onChange, onSubmit, submitting, value }:any) => (
+    <>
+      <Form.Item>
+        <TextArea rows={4} onChange={onChange} value={value} />
+      </Form.Item>
+      <Form.Item>
+        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
+          添加评论
+        </Button>
+      </Form.Item>
+    </>
+  );
 
 class PostComment extends React.Component<any,any>{
     constructor(props:any){
@@ -33,7 +34,8 @@ class PostComment extends React.Component<any,any>{
             commentLike: 10,
             likeAction: 'liked',
             commentDislike:10,
-            value:''
+            value:'',
+            comments:[]
         };
     }
     like = ()=>{
@@ -43,6 +45,30 @@ class PostComment extends React.Component<any,any>{
     }
     handleSubmit =() =>{
         //处理提交函数
+        if (!this.state.value) {
+            return;
+          }
+      
+          this.setState({
+            submitting: true,
+          });
+      
+          setTimeout(() => {
+            this.setState({
+              submitting: false,
+              value: '',
+              comments: [
+                ...this.state.comments,
+                {
+                  author: 'Han Solo',
+                  avatar: 'https://joeschmoe.io/api/v1/random',
+                  content: <p>{this.state.value}</p>,
+                  datetime: moment().fromNow(),
+                },
+              ],
+            });
+          }, 1000);
+      
     }
     handlechange = (e:any)=>{
         this.setState({value:e.target.value})
@@ -52,10 +78,9 @@ class PostComment extends React.Component<any,any>{
     }
 
     render(): React.ReactNode {
+        
         return(
             <div>
-
-            
             <Comment
             actions={[ <Tooltip key="comment-basic-like" title="Like">
             <span onClick={this.like}>

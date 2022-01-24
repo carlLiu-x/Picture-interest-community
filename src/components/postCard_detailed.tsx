@@ -2,7 +2,6 @@
 //输出 PostCardD
 import React from 'react';
 import { Modal,Avatar,Carousel,Image, Drawer,Comment} from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
 import "../css/postCard.css";
 import pointURL from "../icon/point.png";
@@ -10,7 +9,7 @@ import loveURL from "../icon/love_black_1.png";
 import commentURL from "../icon/comment.png";
 import postURL from "../icon/airplane_black.png";
 import postURL_1 from "../icon/post.png";
-import PostComment from './comment';
+import PostComment from './Postcomment';
  
 
 class PostCardD extends React.Component<any,any> {
@@ -42,7 +41,6 @@ class PostCardD extends React.Component<any,any> {
   }
   componentDidMount(){
     this.props.onRef(this)
-    console.log("加载")
   }
 
 
@@ -61,7 +59,6 @@ class PostCardD extends React.Component<any,any> {
           destroyOnClose = {true}
           onCancel={this.handleCancel}
           maskClosable={true}
-          
         >   
             <div className='postCard'>
               <div id="userInformation">
@@ -75,15 +72,11 @@ class PostCardD extends React.Component<any,any> {
 
               </div>
            
-             <Carousel arrows={true} cssEase='linear' className="Carousel" >
+             <Carousel cssEase='linear' className="PostCarousel" >
                 
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-               
-              
-                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-              
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-               
+                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" /> 
               
             </Carousel>
@@ -100,8 +93,6 @@ class PostCardD extends React.Component<any,any> {
               <input type='text' style={{width:400}}></input>
               <input type='image' src={postURL_1} className='postcard_icon'></input>
             </div>
-          
-             
             </div>
             <Drawer title = "评论" 
                     placement='right' 
@@ -113,11 +104,11 @@ class PostCardD extends React.Component<any,any> {
                     >
                       <PostComment />
               
-        </Drawer>   
+        </Drawer> 
                         
         </Modal>
        
-        
+       
       </>
     );
   }

@@ -14,12 +14,10 @@
     align-content: space-around;
     
 }
-.Carousel{
+.PostCarousel{
     width: 600px;
     position:relative;
     margin-top:10px;
-   
-   
     margin-left: -24px;
 
 }
