@@ -87,4 +87,3 @@ class PostCard extends React.Component<any,any> {
 // }
 
 export default PostCard;
-
