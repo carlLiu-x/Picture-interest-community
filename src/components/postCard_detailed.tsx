@@ -115,5 +115,3 @@ class PostCardD extends React.Component<any,any> {
 }
 
 export default PostCardD
-
-

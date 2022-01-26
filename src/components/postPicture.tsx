@@ -117,10 +117,10 @@ class PostPicture extends Component {
             </Sider>
             <Layout className="picture-design-side">
                 <Header className="post-router-head" >
-                <NavLink className="post-router-head-edit" to="/edit" >
+                <NavLink className="post-router-head-edit" to="/postpicture/edit" >
                 <Button ghost type="text" icon={<LeftOutlined />} className="post-router-head-before" />
                 </NavLink>  
-                <NavLink className="post-router-head-post" to="/post" >
+                <NavLink className="post-router-head-post" to="/postpicture/post" >
                 <Button ghost type="text" icon={<RightOutlined />} className="post-router-head-next" />                 
                 </NavLink>
                 </Header>
