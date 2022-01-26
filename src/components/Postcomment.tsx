@@ -2,30 +2,13 @@ import React,{createElement} from 'react';
 import { Comment,Avatar,Collapse,Tooltip,Form,Button,List,Input } from "antd";
 import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
 import moment from 'moment';
+import { time } from 'console';
 
 const { TextArea } = Input;
+const {Panel} = Collapse;
 
-const CommentList = ({comments}:any) => (
-    <List
-      dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-      itemLayout="horizontal"
-      //renderItem={props => <Comment {...props} />}
-    />
-  );
-  
-  const Editor = ({ onChange, onSubmit, submitting, value }:any) => (
-    <>
-      <Form.Item>
-        <TextArea rows={4} onChange={onChange} value={value} />
-      </Form.Item>
-      <Form.Item>
-        <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
-          添加评论
-        </Button>
-      </Form.Item>
-    </>
-  );
+
+
 
 class PostComment extends React.Component<any,any>{
     constructor(props:any){
@@ -106,6 +89,14 @@ class PostComment extends React.Component<any,any>{
           >
               
           </Comment>
+          <Collapse bordered = {false}defaultActiveKey={['1']}>
+            <Panel header=""key="1">
+               
+            </Panel>
+  
+            </Collapse>
+            
+          {/* 评论 */}
           <hr />
           </div>
     

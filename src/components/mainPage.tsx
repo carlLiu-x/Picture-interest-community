@@ -4,13 +4,28 @@ import React from 'react';
 import '../css/mainPage.css' 
 import {Menu,Space} from 'antd';
 import PostCard from './postCard';
+import {get,post} from '../axios/axios';
 
 
 class MainPage extends React.Component{
     constructor(props:any)
     {
         super(props);
-        this.state = {}
+        this.state = {
+            postList:[],
+            model:"recommend", 
+        }
+    }
+    componentDidMount(){
+        console.log('Mount')
+        // get()
+        get("/api/v1/mainPage/page","").then((res) =>{
+            console.log(res.data);
+            console.log("发送成功");
+        })
+    }
+    componentDidUpdate(){
+        console.log('Update')
     }
     render(): React.ReactNode {
         return(

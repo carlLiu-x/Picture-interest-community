@@ -25,5 +25,6 @@ class Request {
     }
     
 }
-const http = new Request("http://localhost:3000");
+
+const http = new Request("");
 export default http;

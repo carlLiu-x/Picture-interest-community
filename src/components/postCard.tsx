@@ -17,6 +17,7 @@ class PostCard extends React.Component<any,any> {
         super(props);
         this.state = {
           isActive : false,
+          postID:this.props.postID,
         }
        
 
