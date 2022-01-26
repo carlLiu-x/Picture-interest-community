@@ -21,7 +21,7 @@ class MainPage extends React.Component{
         // get()
         get("/api/v1/mainPage/page","").then((res) =>{
             console.log(res.data);
-            console.log("发送成功");
+            
         })
     }
     componentDidUpdate(){
