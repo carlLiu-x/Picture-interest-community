@@ -4,16 +4,17 @@ import {get,post} from '../axios/axios'
 import { NavLink} from 'react-router-dom'
 import { Form, Input, Button, Checkbox,Card,Layout,Divider  } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-
+import {set} from "local-storage"
 const { Header, Content, Footer } = Layout;
 
 class Login extends React.Component {
     onFinish = (values: any) => {
         post("/api/v1/account/login",values).then((responce) =>{
-            console.log(responce.data);
             if(responce.data.message === 'OK'){
-                document.getElementById('tohomepage')?.click();
-                console.log("click");
+                if(set("uid",`${responce.data.uid}`)){
+                    document.getElementById('tohomepage')?.click();
+                    console.log("click");
+                }
             }
         }).catch(error=>{
             console.log('did not send')
