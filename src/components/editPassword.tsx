@@ -12,9 +12,10 @@ const Demo = () => {
 };
 
 export default function EditPassword(): JSX.Element {
+    
     return (
         <>
-            <Form
+            <Form 
                 name="basic"
                 labelCol={{ span: 8 }}
                 wrapperCol={{ span: 16 }}

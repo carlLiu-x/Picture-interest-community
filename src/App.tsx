@@ -19,15 +19,10 @@ class App extends React.Component {
             <BrowserRouter>
                 <Log></Log>
                 <Routes>
-
-                 <Route path='/homepage' element={<MainPage></MainPage>}>
-               
-                 </Route>
-                 <Route path='/edit1' element={<PostPicture></PostPicture>}></Route>
+                    <Route path='/homepage' element={<MainPage></MainPage>}></Route>
+                    <Route path='/edit1' element={<PostPicture></PostPicture>}></Route>
                     <Route path='/edit' element={<EditPage></EditPage>}></Route>
                     <Route path='/user' element={<UserPage></UserPage>}></Route>
-
-
                 </Routes>
             </BrowserRouter>
         )
