@@ -29,15 +29,10 @@ class App extends React.Component {
              <Navigation/>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
                 <Routes>
-
-                 <Route path='/homepage' element={<MainPage></MainPage>}>
-               
-                 </Route>
-                 <Route path='/edit1' element={<PostPicture></PostPicture>}></Route>
+                    <Route path='/homepage' element={<MainPage></MainPage>}></Route>
+                    <Route path='/edit1' element={<PostPicture></PostPicture>}></Route>
                     <Route path='/edit' element={<EditPage></EditPage>}></Route>
                     <Route path='/user' element={<UserPage></UserPage>}></Route>
-
-
                 </Routes>
                 </Content>
             </Layout>
