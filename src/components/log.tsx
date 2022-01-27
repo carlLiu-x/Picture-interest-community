@@ -3,6 +3,7 @@ import { Route, Routes} from 'react-router-dom'
 import Login from './login'
 import Logon from './logon'
 
+
 export class Log extends Component {
   render() {
     return(
@@ -10,7 +11,7 @@ export class Log extends Component {
         <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/logon" element={<Logon />} />
+        <Route path="/register" element={<Logon />} />
         </Routes> 
         </div>
     );

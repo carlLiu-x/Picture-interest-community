@@ -14,21 +14,21 @@ export class PostPictureEdit extends Component {
             {/**图片编辑导航栏路由链接*/}
             <Sider className="picture-edit-item" width={100} theme = "light">
               <Content className="picture-edit-item-content">
-                <NavLink className="cut" to="/postpicture/edit/postpicturecut" >
+                <NavLink className="cut" to="/mainPage/send/edit/postpicturecut" >
                 <Button type="primary" block>
                   裁剪
                 </Button>
                 </NavLink>
               </Content>
               <Content className="picture-edit-item-content">
-                <NavLink className="filter" to="/postpicture/edit/postpicturefilter" >
+                <NavLink className="filter" to="/mainPage/send/edit/postpicturefilter" >
                 <Button type="primary" block>
                   滤镜
                 </Button>
                 </NavLink>
               </Content>
               <Content className="picture-edit-item-content">
-                <NavLink className="sign" to="/postpicture/edit/postpicturesign" >
+                <NavLink className="sign" to="/mainPage/send/edit/postpicturesign" >
                 <Button type="primary" block>
                   标记
                 </Button>
