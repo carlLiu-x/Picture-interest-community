@@ -9,8 +9,10 @@ import loveURL from "../icon/love_black_1.png";
 import commentURL from "../icon/comment.png";
 import postURL from "../icon/airplane_black.png";
 import postURL_1 from "../icon/post.png";
+import disloveURL from "../icon/love_black_2.png";
 import PostComment from './Postcomment';
-import {get} from '../axios/axios'
+import {get,post} from '../axios/axios'
+
 
  
 
@@ -27,7 +29,8 @@ class PostCardD extends React.Component<any,any> {
       likeNumber:0,
       postID:-1,
       postType:-1,
-      commentList:[]
+      commentList:[],
+      likeJudge:false
 
     }
   }
@@ -68,8 +71,35 @@ class PostCardD extends React.Component<any,any> {
   componentDidMount(){
     this.props.onRef(this)
     
-  }
   
+  }
+  like =()=>{
+    const data = {
+      PostId:1,
+      UserId:this.state.postId
+    }
+    if(this.state.likeJudge == true){
+      post("/api/v1/mainPage/cancelLike",data).then((res)=>{
+        console.log(res.data);
+        if(res.data.message == 'OK'){
+          this.setState({likeJudge: !this.state.likeJudge,
+                         likeNumber:this.state.likeNumber -1})
+        }
+        
+      })
+    }
+    else {
+      post("/api/v1/mainPage/like",data).then((res)=>{
+        console.log(res.data)
+        if(res.data.message == 'OK'){
+          this.setState({likeJudge: !this.state.likeJudge,
+                         likeNumber:this.state.likeNumber + 1})
+        }
+      })
+
+    }
+   
+  }  
   
 
 
@@ -113,8 +143,8 @@ class PostCardD extends React.Component<any,any> {
                      })}
             </Carousel>
             <div id='postCard_action'>
-            <input type='image' src={loveURL} className='postcard_icon'></input>
-            <input type='image' src={commentURL} className='postcard_icon' onClick={this.showDrawer}></input>
+            <input type='image' src={this.state.likeJudge == false?loveURL:disloveURL} className='postcard_icon' onClick={this.like}></input>
+            <input type='image' src={commentURL} className='postcard_icon'id = "likeButton" onClick={this.showDrawer}></input>
             <input type='image' src={postURL} className='postcard_icon'></input>
             </div>
             <p className='comment_information'>喜爱{this.state.likeNumber}</p> 
