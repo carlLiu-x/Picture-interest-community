@@ -2,12 +2,28 @@
 //输出MainPage
 import React from 'react';
 import '../css/mainPage.css' 
-import {Menu,Space} from 'antd';
+import {Menu,Space,List} from 'antd';
 import PostCard from './postCard';
 import {get,post} from '../axios/axios';
+import axios from 'axios';
 
+interface Post {
+    PostId: number;
+    CreatedAt: Date;
+    UpdatedAt: Date;
+    DeletedAt: Date;
+    PublisherId:string;
+    PhotoNumber:string;
+    Content:any;
+    CommentNumber: number;
+    ForwardNumber: number;
+    LikeNumber: number;
+    CollectionNumber: number;
+    PhotoPathUrl: string;
+    Location: string;
 
-class MainPage extends React.Component{
+}
+class MainPage extends React.Component<any,any>{
     constructor(props:any)
     {
         super(props);
@@ -15,19 +31,26 @@ class MainPage extends React.Component{
             postList:[],
             model:"recommend", 
         }
+        
+       
     }
+    
     componentDidMount(){
-        console.log('Mount')
-        // get()
-        get("/api/v1/mainPage/page","").then((res) =>{
-            console.log(res.data);
-            
+        const data = {
+            UserId: 1,
+        }
+        
+        get("/api/v1/mainPage/page",data).then((res) =>{
+           
+             
+             console.log(res.data.PostList)
+             this.setState({postList:res.data.PostList})
+             
+             
         })
     }
-    componentDidUpdate(){
-        console.log('Update')
-    }
     render(): React.ReactNode {
+        
         return(
         <div>   
              <div id = 'mainPage'>
@@ -37,16 +60,19 @@ class MainPage extends React.Component{
                 </Menu>
                 
                 <Space style={{position:"relative",top:100,zIndex:0}} direction='vertical' size={20}>
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
-                    <PostCard />
+                    <List
+                        dataSource={this.state.postList}
+                        renderItem={(item:any) =>(
+                            <li>
+                                <PostCard  pictureUrl = {item.PhotoUrl[0]} postInformation = {item.Post} UserProfile = {item.SenderProfileUrl}></PostCard>
+                                
+                            </li>
+                        )}>
+
+                    </List>
+                    
+                    
+                    
 
                 </Space>
               
