@@ -10,7 +10,7 @@
     outline-style: solid;
     outline-color: gray;
     outline-width: thin;
-    min-width: 100px;
+    min-width: 300px;
 }
 .picture-edit{
     background-color: white;
@@ -23,6 +23,7 @@
     outline-style: solid;
     outline-color: gray;
     outline-width: thin;
+    min-width: 200px;
 }
 .picture-upload-show{
     min-height: 640px;
