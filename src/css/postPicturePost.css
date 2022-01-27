@@ -4,6 +4,7 @@
     outline-color: gray;
     outline-width: thin;
     background-color: white;
+    min-width: 300px;
 }
 .avatar-content{
     margin-top: 30px;

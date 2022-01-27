@@ -19,6 +19,13 @@ class Navigation extends React.Component {
       document.getElementById('homePage')?.click();
       console.log("click");
   }
+  toUserPage = ()=>{
+    document.getElementById('userPage')?.click();
+    
+  }
+  toNewPost = ()=>{
+    
+  }
  render(): React.ReactNode {
      
      return (
@@ -43,8 +50,10 @@ class Navigation extends React.Component {
           <input type='image' src = {AddURL} className = "navigation_icon"></input>
           <input type='image' src={CompassURL} className="navigation_icon"></input>
           <input type='image' src={LoveURL} className="navigation_icon"></input>
-          <input type='image' src={UserURL} className="navigation_icon"></input>
+          <input type='image' src={UserURL} className="navigation_icon" onClick={this.toUserPage}></input>
           <a href = './homepage' style = {{display:'none'}}id = 'homePage'></a>
+          <a href = './user' style = {{display:'nine'}} id = 'userPage'></a>
+          
       </Space>
     
     </Header>

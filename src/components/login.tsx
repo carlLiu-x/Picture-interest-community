@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import '../css/login.css' 
+import {get,post} from '../axios/axios'
 import { NavLink} from 'react-router-dom'
 import { Form, Input, Button, Checkbox,Card,Layout,Divider  } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
@@ -7,10 +8,18 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 const { Header, Content, Footer } = Layout;
 
 class Login extends React.Component {
+    onFinish = (values: any) => {
+        post("/api/v1/account/login",values).then((responce) =>{
+            console.log(responce.data);
+            if(responce.data.message === 'OK'){
+                document.getElementById('tohomepage')?.click();
+                console.log("click");
+            }
+        }).catch(error=>{
+            console.log('did not send')
+        })
+    }; 
     render() {
-        const onFinish = (values: any) => {
-            console.log('Received values of form: ', values);
-        }; 
         return (
             <Layout>
             <div className="whitespace"/>
@@ -27,11 +36,11 @@ class Login extends React.Component {
                     <Form
                     name="normal_login"
                     initialValues={{ remember: true }}
-                    onFinish={onFinish}
+                    onFinish={this.onFinish}
                     >
                     {/* 账号输入框 */}
                     <Form.Item
-                        name="username"
+                        name="telephone"
                         rules={[
                             {
                                 type: 'string',
@@ -87,7 +96,7 @@ class Login extends React.Component {
             <Content className="login-tologon-content">
                 <Card  className="to-logon">
                         没有账号？ 
-                        <NavLink className="log-router-logon" to="/logon" >
+                        <NavLink className="log-router-logon" to="/register" >
                         注册
                         </NavLink>  
                 </Card>
@@ -96,6 +105,7 @@ class Login extends React.Component {
             <div className="whitespace"/>
             <div className="whitespace"/>
             <Footer className="site-layout-footer" style={{ textAlign: 'center' }}>Picture interest community ©2022 Created by group 1</Footer>
+            <a href = './homepage' style = {{display:'none'}}id = 'tohomepage'></a>
           </Layout>
 
         )

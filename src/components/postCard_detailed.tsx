@@ -18,7 +18,8 @@ class PostCardD extends React.Component<any,any> {
     super(props);
     this.state={
       visible: this.props.visible,
-      drawerVisible: false
+      drawerVisible: false,
+      postInformation:{}
 
     }
   }
@@ -36,12 +37,15 @@ class PostCardD extends React.Component<any,any> {
   this.forceUpdate();
   }
 
-  setVisible = () =>{
-    this.setState({visible:!this.state.visible})
+  setVisible = (_postInformation:any) =>{
+    this.setState({visible:!this.state.visible,
+                  postInformation:_postInformation})
   }
   componentDidMount(){
     this.props.onRef(this)
   }
+  
+  
 
 
   render() {

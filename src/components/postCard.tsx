@@ -17,23 +17,25 @@ class PostCard extends React.Component<any,any> {
         super(props);
         this.state = {
           isActive : false,
-          postID:this.props.postID,
+          postInformation:this.props.postInformation
         }
        
 
     }
 
     render(): React.ReactNode {
+      console.log("postcard" + this.props.UserProfile)
         return(
           <div>
             <Card
             style={{ width: 650,display:'inline-block'}}
-            // cover={
-            //   <img
-            //     alt="example"
-            //     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-            //   />
-            // }
+            cover={
+              <img
+                
+                src={this.props.pictureUrl}
+                onClick={this.showModal}
+              />
+            }
             actions={[
               <SettingOutlined key="setting" />,
               <EditOutlined key="edit" />,
@@ -41,12 +43,12 @@ class PostCard extends React.Component<any,any> {
             ]}
           >
             <Meta
-              avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+              avatar={<Avatar src= {this.props.UserProfile} />}
               title="Card title"
-              description="This is the description"
+              description="#feed"
             />
             {/* <Album className='Album'></Album> */}
-            <Image width={650} className='post_picture' preview={false}  height={400} onClick={this.showModal}  src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
+            {/* <Image width={650} className='post_picture' preview={false}  height={400} onClick={this.showModal}  src= {this.props.pictureUrl}/> */}
             
           </Card>
           <PostCardD onRef={this.onChildRef}></PostCardD>
@@ -56,7 +58,8 @@ class PostCard extends React.Component<any,any> {
     }
     
     showModal = () =>{
-      this.childRef.setVisible();
+      this.childRef.setVisible(this.state.postInformation);
+      
     }
     onChildRef = (child:any) =>{
       this.childRef = child;

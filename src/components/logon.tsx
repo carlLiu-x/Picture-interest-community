@@ -1,17 +1,48 @@
 import React, {Component} from 'react'
 import '../css/logon.css' 
-import { NavLink} from 'react-router-dom'
+import {get,post} from '../axios/axios'
+import { NavLink,useNavigate} from 'react-router-dom'
 import { Form, Input,InputNumber,Cascader,Select,Row,Col,AutoComplete, Button, Checkbox,Card,Layout } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import { AxiosResponse } from 'axios';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 
+
 class Logon extends React.Component{
+    // constructor(telnum: string,password: string,sex: string,age: string,email: string) {
+    //     super(telnum);
+    //     this.state = {
+    //         telnum: '', //账号
+    //         password: '', // 密码
+    //         sex: 0, // 性别
+    //         age: '', //年龄
+    //         email: '' //邮箱
+    //     }
+    // }
+    // 绑定表单
+    handleChange = (values: any) => {
+        var res ={
+            nickname: values.nickname,
+            sex: values.gender,
+            telephone: values.telephone,
+            profileurl: '',
+            password: values.password,
+            email: values.email,
+            birthday: values.age
+        }
+        post("/api/v1/account/register",res).then((responce ) =>{
+            console.log(responce.data);
+            if(responce.data.message === 'OK'){
+                document.getElementById('tologin')?.click();
+                console.log("click");
+            }
+        }).catch(error=>{
+            alert('did not send')
+        })
+    }; 
     render() {
-        const onFinish = (values: any) => {
-            console.log('Received values of form: ', values);
-        }; 
         return(
             <Layout>
                 <div className="whitespace"/>
@@ -27,16 +58,12 @@ class Logon extends React.Component{
                 <Form
                     name="register"
                     initialValues={{ remember: true }}
-                    onFinish={onFinish}
+                    onFinish={this.handleChange}
                 >
                     <Form.Item
-                        name="telnum"
+                        name="telephone"
                         label="电话"
                         rules={[
-                        {
-                            type: 'email',
-                            message: '请输入正确的电话!',
-                        },
                         {
                             required: true,
                             message: '请输入电话!',
@@ -82,13 +109,25 @@ class Logon extends React.Component{
                         <Input.Password placeholder="请再次输入密码"/>
                     </Form.Item>
                     <Form.Item
+                        name="nickname"
+                        label="昵称"
+                        rules={[
+                        {
+                            required: true,
+                            message: '请输入您的昵称!',
+                        },
+                        ]}
+                    >
+                        <Input placeholder="请输入昵称"/>
+                    </Form.Item>
+                    <Form.Item
                         name="gender"
                         label="性别"
                         rules={[{ required: true, message: '请选择你的性别!' }]}
                     >
                         <Select placeholder="选择你的性别">
-                        <Option value="male">男</Option>
-                        <Option value="female">女</Option>
+                        <Option value="1">男</Option>
+                        <Option value="0">女</Option>
                         </Select>
                     </Form.Item>
                     <Form.Item
@@ -119,6 +158,7 @@ class Logon extends React.Component{
                         </NavLink>  
                 </Card>
                 <div className="whitespace"/>
+                <a href = './login' style = {{display:'none'}}id = 'tologin'></a>
             </Layout>
         )
     }
