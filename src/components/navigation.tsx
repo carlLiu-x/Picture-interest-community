@@ -24,6 +24,8 @@ class Navigation extends React.Component {
     
   }
   toNewPost = ()=>{
+    document.getElementById('postPage')?.click();
+
     
   }
  render(): React.ReactNode {
@@ -47,13 +49,13 @@ class Navigation extends React.Component {
           <input type="image" src = {HomeURL} className = "navigation_icon" onClick={this.backHome}  title = "主页"></input>
           
           <input type="image" src ={AirplaneURL} className = "navigation_icon"></input>
-          <input type='image' src = {AddURL} className = "navigation_icon"></input>
+          <input type='image' src = {AddURL} className = "navigation_icon" onClick={this.toNewPost}></input>
           <input type='image' src={CompassURL} className="navigation_icon"></input>
           <input type='image' src={LoveURL} className="navigation_icon"></input>
           <input type='image' src={UserURL} className="navigation_icon" onClick={this.toUserPage}></input>
           <a href = './homepage' style = {{display:'none'}}id = 'homePage'></a>
-          <a href = './user' style = {{display:'nine'}} id = 'userPage'></a>
-          
+          <a href = './user' style = {{display:'none'}} id = 'userPage'></a>
+          <a href = './edit1' style = {{display:'none'}} id='postPage'> </a>
       </Space>
     
     </Header>
