@@ -64,7 +64,7 @@ class MainPage extends React.Component<any,any>{
                         dataSource={this.state.postList}
                         renderItem={(item:any) =>(
                             <li>
-                                <PostCard  pictureUrl = {item.PhotoUrl[0]} postInformation = {item.Post} UserProfile = {item.SenderProfileUrl}></PostCard>
+                                <PostCard  publisherName ={item.PublisherName}pictureUrl = {item.PhotoUrl} postInformation = {item} UserProfile = {item.PublisherProfileUrl}></PostCard>
                                 
                             </li>
                         )}>

@@ -1,7 +1,7 @@
 //帖子的详细界面组件 
 //输出 PostCardD
 import React from 'react';
-import { Modal,Avatar,Carousel,Image, Drawer,Comment} from 'antd';
+import { Modal,Avatar,Carousel,Image, Drawer,Comment,List} from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import "../css/postCard.css";
 import pointURL from "../icon/point.png";
@@ -10,6 +10,8 @@ import commentURL from "../icon/comment.png";
 import postURL from "../icon/airplane_black.png";
 import postURL_1 from "../icon/post.png";
 import PostComment from './Postcomment';
+import {get} from '../axios/axios'
+
  
 
 class PostCardD extends React.Component<any,any> {
@@ -19,13 +21,29 @@ class PostCardD extends React.Component<any,any> {
     this.state={
       visible: this.props.visible,
       drawerVisible: false,
-      postInformation:{}
+      postInformation:{},
+      photoUrl:[],
+      commentNumber:0,
+      likeNumber:0,
+      postID:-1,
+      postType:-1,
+      commentList:[]
 
     }
   }
   //评论抽屉的打开
   showDrawer = () =>{
-    this.setState({drawerVisible:true})
+    const data = {
+      PostId:this.state.postId,
+      PostType:this.state.postType
+    }
+    console.log(data)
+    get("/api/v1/mainPage/comment",data).then((res)=>{
+      console.log(res.data)
+      this.setState({drawerVisible:true,
+                      commentList:res.data.CommentList})
+    })
+    
   }
   //评论抽屉的关闭
   onClose = () => {
@@ -39,18 +57,26 @@ class PostCardD extends React.Component<any,any> {
 
   setVisible = (_postInformation:any) =>{
     this.setState({visible:!this.state.visible,
-                  postInformation:_postInformation})
+                  postInformation:_postInformation,
+                  photoUrl:_postInformation.PhotoUrl,
+                  commentNumber:_postInformation.Post.CommentNumber,
+                  likeNumber:_postInformation.Post.LikeNumber,
+                  postId:    _postInformation.Post.PostId,
+                  postType:  _postInformation.PostType})
+    console.log(_postInformation.Post.PostId)
   }
   componentDidMount(){
     this.props.onRef(this)
+    
   }
   
   
 
 
   render() {
-   
+    let pictureArray:[] = this.state.photoUrl;
     
+
     return (
       <>
         
@@ -66,8 +92,8 @@ class PostCardD extends React.Component<any,any> {
         >   
             <div className='postCard'>
               <div id="userInformation">
-              <Avatar src="https://joeschmoe.io/api/v1/random" />
-              <p>user name</p>
+              <Avatar src={this.state.postInformation.PublisherProfileUrl} />
+              <p>{this.state.postInformation.PublisherName}</p>
               <p></p>    <p></p>   <p></p>   <p></p>  <p></p> 
               <p></p>   <p></p>   <p></p>   <p></p>   <p></p> 
               <p></p>  <p></p>   <p></p>   <p></p>   <p></p> 
@@ -77,26 +103,28 @@ class PostCardD extends React.Component<any,any> {
               </div>
            
              <Carousel cssEase='linear' className="PostCarousel" >
-                
+{/*                 
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
                     <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" /> 
-              
+                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />  */}
+                     {pictureArray.map((item) =>{
+                       return <Image width={600} height={400} src={item} />
+                     })}
             </Carousel>
             <div id='postCard_action'>
             <input type='image' src={loveURL} className='postcard_icon'></input>
             <input type='image' src={commentURL} className='postcard_icon' onClick={this.showDrawer}></input>
             <input type='image' src={postURL} className='postcard_icon'></input>
             </div>
-            <p className='comment_information'>16.5万赞</p> 
+            <p className='comment_information'>喜爱{this.state.likeNumber}</p> 
             <p className='comment_information'>主feed</p>
-            <p className='comment_information'>全部1000评论</p>
-            <div id='comment'>
+            <p className='comment_information'>全部{this.state.commentNumber}评论</p>
+            {/* <div id='comment'>
               <a></a>
               <input type='text' style={{width:400}}></input>
               <input type='image' src={postURL_1} className='postcard_icon'></input>
-            </div>
+            </div> */}
             </div>
             <Drawer title = "评论" 
                     placement='right' 
@@ -106,7 +134,17 @@ class PostCardD extends React.Component<any,any> {
                     
                     style = {{position:'absolute'}}
                     >
-                      <PostComment />
+                     
+                      <List
+                        dataSource={this.state.commentList}
+                        renderItem={(item:any) =>(
+                            <li>
+                                <PostComment commentList = {item}/>
+                                
+                            </li>
+                        )}>
+
+                    </List>
               
         </Drawer> 
                         

@@ -14,11 +14,11 @@ class PostComment extends React.Component<any,any>{
     constructor(props:any){
         super(props);
         this.state = {
-            commentLike: 10,
+            commentLike: 1,
             likeAction: 'liked',
-            commentDislike:10,
-            value:'',
-            comments:[]
+            commentDislike:0,
+            value:this.props.commentList.Content,
+            
         };
     }
     like = ()=>{
@@ -59,6 +59,11 @@ class PostComment extends React.Component<any,any>{
     dislike = ()=>{
         this.setState({commentLike:this.state.commentLike - 1 ,likeAction:'disliked',commentDislike:this.state.commentDislike + 1});
     }
+    componentDidMount(){
+      console.log(this.props)
+      console.log(this.state.value)
+    }
+    
 
     render(): React.ReactNode {
         
@@ -82,20 +87,20 @@ class PostComment extends React.Component<any,any>{
             avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
             content={
               <p>
-                We supply a series of design principles, practical patterns and high quality design
-                resources (Sketch and Axure).
+                {this.state.value}
               </p>
             }
           >
               
           </Comment>
-          <Collapse bordered = {false}defaultActiveKey={['1']}>
+          {/* 此处是给添加评论的方面 */}
+          {/* <Collapse bordered = {false}defaultActiveKey={['1']}>
             <Panel header=""key="1">
                
             </Panel>
   
             </Collapse>
-            
+             */}
           {/* 评论 */}
           <hr />
           </div>
