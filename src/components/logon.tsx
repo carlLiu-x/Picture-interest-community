@@ -34,6 +34,7 @@ class Logon extends React.Component{
         }
         post("/api/v1/account/register",res).then((responce ) =>{
             console.log(responce.data);
+            console.log(res);
             if(responce.data.message === 'OK'){
                 document.getElementById('tologin')?.click();
                 console.log("click");

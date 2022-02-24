@@ -35,3 +35,7 @@ export function userDetailedInfoPost(data:any){
     return post("/api/v1/personalPage/modifyProfile",data);
 }
 
+export function passwordModifyPost(data:any){
+    // return post(baseUrl+"/v1/personalPage/modifyProfile",data);
+    return post("/api/v1/personalPage/modifyPassword",data);
+}

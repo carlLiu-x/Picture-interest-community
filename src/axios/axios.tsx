@@ -12,7 +12,7 @@ export const post = (url:string,data:any)=>{
     return http.request({
         url:url,
         method:'post',
-        data:data
+        params:data
 
     })
 }

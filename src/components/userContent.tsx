@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Card, Avatar, Row, Col, Tabs, Space, List } from "antd";
+import { Card, Avatar, Row, Col, Tabs, Space, List,Image } from "antd";
 import { userPostsGet } from "../services/userApi";
-import PostCard from "./postCard";
+import UserPostCard from "./userPostCard";
+import { get as localStorageGet } from "local-storage";
 
 const { TabPane } = Tabs;
 
@@ -24,8 +25,42 @@ export default function UserContent(): JSX.Element {
             setDataSrouce(res.data.PostList);
             console.log(dataSource);
         });
-    },[]
+    }, []
     )
+
+    const getListElement = () => {
+        if (dataSource === null) {
+            return;
+        } else {
+            return (
+                // <List
+                //     dataSource={dataSource}
+                //     renderItem={(item: any) => (
+                //         // <li>
+                //         <UserPostCard pictureUrl={item.PhotoUrl[0]} postInformation={item.Post} UserProfile={item.SenderProfileUrl}></UserPostCard>
+
+                //         // </li>
+                //     )}>
+                // </List>
+                <List
+                itemLayout="horizontal"
+                dataSource={dataSource}
+                grid={{ gutter: 16, column: 2 }}
+                pagination={{
+                  onChange: (page) => {
+                    console.log(page);
+                  },
+                  pageSize: 4,
+                }}
+                renderItem={(item: any) => (
+                  <List.Item>
+                    <Image width={200} src={item.PhotoUrl[0]} />
+                  </List.Item>
+                )}
+              />
+            );
+        }
+    }
 
     return (
         <>
@@ -40,16 +75,7 @@ export default function UserContent(): JSX.Element {
                 <Tabs defaultActiveKey="content" centered>
                     <TabPane tab="posts" key="1">
                         {/* <Space style={{ position: "relative", top: 100, zIndex: 0 }} direction='vertical' size={20}> */}
-                            <List
-                                dataSource={dataSource}
-                                renderItem={(item: any) => (
-                                    <li>
-                                        <PostCard pictureUrl={item.PhotoUrl[0]} postInformation={item.Post} UserProfile={item.SenderProfileUrl}></PostCard>
-
-                                    </li>
-                                )}>
-
-                            </List>
+                        {getListElement()}
                         {/* </Space> */}
                     </TabPane>
                     <TabPane tab="favorites" key="2">

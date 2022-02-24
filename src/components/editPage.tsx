@@ -18,7 +18,7 @@ export default function EditPage(): JSX.Element {
                     <EditPassword />
                 </TabPane>
                 <TabPane tab="..." key="3">
-                    Content of Tab 3
+                    To be continued.
                 </TabPane>
                 </Tabs>
             </Card>
