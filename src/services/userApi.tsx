@@ -1,4 +1,4 @@
-import {get,post} from "../axios/axios";
+import {get,post2} from "../axios/axios";
 
 // const baseUrl = "120.27.196.130:8080";
 
@@ -32,10 +32,10 @@ export function userDetailedInfoGet(uid:any){
 //data包括uid,nickname,profile_url,sex & 需要修改的信息
 export function userDetailedInfoPost(data:any){
     // return post(baseUrl+"/v1/personalPage/modifyProfile",data);
-    return post("/api/v1/personalPage/modifyProfile",data);
+    return post2("/api/v1/personalPage/modifyProfile",data);
 }
 
 export function passwordModifyPost(data:any){
     // return post(baseUrl+"/v1/personalPage/modifyProfile",data);
-    return post("/api/v1/personalPage/modifyPassword",data);
+    return post2("/api/v1/personalPage/modifyPassword",data);
 }
