@@ -2,13 +2,20 @@ import React, {Component} from 'react'
 import '../css/logon.css' 
 import {get,post} from '../axios/axios'
 import { NavLink,useNavigate} from 'react-router-dom'
-import { Form, Input,InputNumber,Cascader,Select,Row,Col,AutoComplete, Button, Checkbox,Card,Layout } from 'antd';
+import picintlogo from '../icon/picintlogo.png';
+import { Form, Input,InputNumber,Cascader,Select,Row,Col,AutoComplete, Button, Checkbox,Card,Layout,message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { AxiosResponse } from 'axios';
 
 const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 
+const error = () => {
+    message.error('账号已存在');
+  };
+const success = () => {
+    message.success('注册成功');
+  };
 
 class Logon extends React.Component{
     // constructor(telnum: string,password: string,sex: string,age: string,email: string) {
@@ -34,10 +41,12 @@ class Logon extends React.Component{
         }
         post("/api/v1/account/register",res).then((responce ) =>{
             console.log(responce.data);
-            console.log(res);
             if(responce.data.message === 'OK'){
                 document.getElementById('tologin')?.click();
                 console.log("click");
+                success();
+            }else{
+                error();
             }
         }).catch(error=>{
             alert('did not send')
@@ -45,16 +54,13 @@ class Logon extends React.Component{
     }; 
     render() {
         return(
-            <Layout>
-                <div className="whitespace"/>
+            <Layout className="logon-layout">
                 {/* 注册页logo */}
-                <Content className="site-layout-content">
-                    <Card  className="to-logon">
-                            logo
-                    </Card>
+                <Content className="logon-logo-content">
+                <input type='image' src={picintlogo} style={{padding:30}}></input>
                 </Content>
-                <div className="whitespace"/>
-                <Content className="site-layout-content">
+                {/* 注册表单card */}
+                <Content className="logon-log-content">
                 <Card title={<div style={{textAlign:"center"}}>图片兴趣社区</div>} className="logon-form">
                 <Form
                     name="register"
@@ -150,15 +156,13 @@ class Logon extends React.Component{
                     </Form.Item>
                 </Form>
                 </Card>
-                <div className="whitespace"/>
                 </Content>
-                <Card  className="to-logon">
+                <Card  className="to-login">
                         已有账号？ 
                         <NavLink className="log-router-login" to="/login" >
                         登录
                         </NavLink>  
                 </Card>
-                <div className="whitespace"/>
                 <a href = './login' style = {{display:'none'}}id = 'tologin'></a>
             </Layout>
         )
