@@ -1,19 +1,33 @@
 @import '~antd/dist/antd.css';
-.logon-form {
-    width: 480px;
-    position: relative;
-    left: 35%;
-}
-.to-logon {
-    width: 480px;
-    position: relative;
-    text-align: center;
-    left: 35%;
-}
-.logon-form-button{
-    text-align: center;
+.logon-layout{
+    background-image: url(../icon/logbackground.jpg);
+    margin:0px;
+    background-size:100% 100%;
+    background-attachment:fixed;
 }
 
-.whitespace {
-    min-height: 50px;
+.logon-logo-content{
+    margin-top:70px;
+    margin-left: 33%;
+    max-width : 50px;
+}
+
+.logon-log-content{
+    margin-top:70px;
+    margin-left: 33%;
+    max-width : 480px;
+}
+
+.logon-form-button{
+    margin-left: 180px;
+}
+
+.to-login{
+    margin-top:100px;
+    margin-left: 33%;
+    max-width : 480px;
+    min-height: 60px;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    margin-bottom: 20px;
 }
