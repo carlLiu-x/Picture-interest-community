@@ -12,13 +12,13 @@ import PostCardD from './postCard_detailed';
 const { Meta } = Card;
 
 class PostCard extends React.Component<any,any> {
+  childVisible:boolean = false;
   public childRef:any = React.createRef();  
   constructor(props:any){
         super(props);
         this.state = {
           isActive : false,
           postInformation:this.props.postInformation
-          
         }
        
 
@@ -56,44 +56,23 @@ class PostCard extends React.Component<any,any> {
             {/* <Image width={650} className='post_picture' preview={false}  height={400} onClick={this.showModal}  src= {this.props.pictureUrl}/> */}
             
           </Card>
+          {/* 2021/2/11 */}
+          {/* { this.childVisible&&<PostCardD onRef={this.onChildRef}></PostCardD>} */}
           <PostCardD onRef={this.onChildRef}></PostCardD>
           </div>
       
         );
     }
-    
     showModal = () =>{
       this.childRef.setVisible(this.state.postInformation);
-      
-      
     }
     onChildRef = (child:any) =>{
       this.childRef = child;
     }
-  }
-
-// function Album(props: any) {
-//   const [visible, setVisible] = useState(false);
-//   return (
-//     <>
-//       <Image
-//         preview={{ visible: false }}
-//         width={750}
-//         height={500}
-        
-//         src="https://gw.alipayobjects.com/zos/antfincdn/cV16ZqzMjW/photo-1473091540282-9b846e7965e3.webp"
-//         onClick={() => setVisible(true)}
-//       />
-//       <div  className='Album'style={{ display: 'none' }}>
-//         <Image.PreviewGroup  preview={{ visible, onVisibleChange: vis => setVisible(vis) }}>
-//           <Image src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp" />
-//           <Image src="https://gw.alipayobjects.com/zos/antfincdn/cV16ZqzMjW/photo-1473091540282-9b846e7965e3.webp" />
-//           <Image src="https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp" />
-//         </Image.PreviewGroup>
-//         <button>点击</button>
-//       </div>
-//     </>
-//   );
-// }
-
+    changeVisible =() =>{
+      this.childVisible = !this.childVisible
+      console.log(this.childVisible);
+    }
+  } 
+    
 export default PostCard;

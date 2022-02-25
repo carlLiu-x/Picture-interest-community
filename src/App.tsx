@@ -22,10 +22,9 @@ const { Header, Content, Footer } = Layout;
 class App extends React.Component {
     render(): React.ReactNode {
         return (
-           
-                <BrowserRouter>
-                <Log></Log>
-                <Layout>
+        <BrowserRouter>
+        <Log></Log>
+            <Layout>
              <Navigation/>
                 <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
                 <Routes>
@@ -36,7 +35,7 @@ class App extends React.Component {
                 </Routes>
                 </Content>
             </Layout>
-            </BrowserRouter>
+        </BrowserRouter>
                 
 
             

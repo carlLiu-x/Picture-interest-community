@@ -1,112 +1,39 @@
-import React,{createElement} from 'react';
-import { Comment,Avatar,Collapse,Tooltip,Form,Button,List,Input } from "antd";
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
-import moment from 'moment';
-import { time } from 'console';
-
-const { TextArea } = Input;
-const {Panel} = Collapse;
+import React from "react";
+import PostCommentSender from "./PostcommentSender";
+import CommentList from "./postCommentList";
+import "../css/postComment.css"
 
 
-
-
-class PostComment extends React.Component<any,any>{
-    constructor(props:any){
+class PostComment extends React.Component<any,any> {
+    constructor(props:any) {
         super(props);
         this.state = {
-            commentLike: 1,
-            likeAction: 'liked',
-            commentDislike:0,
-            value:this.props.commentList.Content,
-            
-        };
+            commentList:this.props.commentList,
+            mode:true
+        }
     }
-    like = ()=>{
-        
-        this.setState({commentLike:this.state.commentLike + 1,likeAction:'liked',commentDislike:this.state.commentDislike -1});
-        
+    chooseMod = (e:any)=>{
+        if(e.target.className == "item") {
+            this.setState({mode:!this.state.mode})
+        } 
     }
-    handleSubmit =() =>{
-        //处理提交函数
-        if (!this.state.value) {
-            return;
-          }
-      
-          this.setState({
-            submitting: true,
-          });
-      
-          setTimeout(() => {
-            this.setState({
-              submitting: false,
-              value: '',
-              comments: [
-                ...this.state.comments,
-                {
-                  author: 'Han Solo',
-                  avatar: 'https://joeschmoe.io/api/v1/random',
-                  content: <p>{this.state.value}</p>,
-                  datetime: moment().fromNow(),
-                },
-              ],
-            });
-          }, 1000);
-      
-    }
-    handlechange = (e:any)=>{
-        this.setState({value:e.target.value})
-    }
-    dislike = ()=>{
-        this.setState({commentLike:this.state.commentLike - 1 ,likeAction:'disliked',commentDislike:this.state.commentDislike + 1});
-    }
-    componentDidMount(){
-      console.log(this.props)
-      console.log(this.state.value)
-    }
-    
-
     render(): React.ReactNode {
-        
         return(
-            <div>
-            <Comment
-            actions={[ <Tooltip key="comment-basic-like" title="Like">
-            <span onClick={this.like}>
-              {createElement(this.state.likeAction === 'liked' ? LikeFilled : LikeOutlined)}
-              <span className="comment-action">{this.state.commentLike}</span>
-            </span>
-          </Tooltip>,
-          <Tooltip key="comment-basic-dislike" title="Dislike">
-            <span onClick={this.dislike}>
-              {React.createElement(this.state.likeAction === 'disliked' ? DislikeFilled : DislikeOutlined)}
-              <span className="comment-action">{this.state.commentDislike}</span>
-            </span>
-          </Tooltip>,
-          <span key="comment-basic-reply-to">Reply to</span>,]}
-            author={<a>Han Solo</a>}
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-            content={
-              <p>
-                {this.state.value}
-              </p>
-            }
-          >
-              
-          </Comment>
-          {/* 此处是给添加评论的方面 */}
-          {/* <Collapse bordered = {false}defaultActiveKey={['1']}>
-            <Panel header=""key="1">
-               
-            </Panel>
-  
-            </Collapse>
-             */}
-          {/* 评论 */}
-          <hr />
-          </div>
-    
+            <div style ={{display:"flex",flexDirection:"column"}}>
+               <PostCommentSender index = {this.props.index} UserProfile = {this.props.UserProfile} userId = {localStorage.getItem("uid")} postId = {this.props.postId} postType = {this.props.postType}></PostCommentSender>
+               <div style = {{margin:"10px 20px 0 0",borderBottom:"1px solid",color:"#f9f9f9"}}></div>
+                <div className = "comment_middle">
+                    <div className="commentType">
+                        <div className={this.state.mode?"item_curr":"item"} onClick={this.chooseMod}>按热度</div>
+                        <div className={this.state.mode?"item":"item_curr"} onClick={this.chooseMod}>按时间</div>
+                    </div>
+                </div>
+                
+               {this.state.commentList.map((item:any,index:number) =>{
+                  return <CommentList commentInformation = {item} commentId = {index}></CommentList>
+               })}
+            </div>
         );
-    }
+    } 
 }
-
-export default PostComment
+export default PostComment;

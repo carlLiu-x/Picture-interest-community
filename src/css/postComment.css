@@ -1,0 +1,202 @@
+.comment_blank {
+    margin: 10px 20px 0;
+    border-bottom: 1px solid;
+    color: #f9f9f9;
+}
+.comment_box {
+    box-sizing: border-box;
+    align-self: stretch;
+    flex: 1;
+}
+.comment_input_box {
+    position: relative;
+    padding: 6px 11px;
+    background: #f0f1f4;
+    border: 1px solid f0f1f4;
+    border-radius: 8px;
+    line-height: 0;
+}
+.comment_input_box_focus {
+    background:#fff;
+    position: relative;
+    padding: 6px 11px;
+    border: 1px solid #ff8200;
+    border-radius: 8px;
+    line-height: 0;
+   
+}
+.comment_input {
+    height: 24px;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    line-height: 24px;
+    font-size: 14px;
+    color: #333;
+    min-height: 24px;
+    max-height: 456px;
+    resize: none;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+}
+.emotion_block {
+    margin: 0 14px 0 0 ;
+    display: inline-block;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.emotion_box {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    cursor: pointer;
+    line-height: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.emotion {
+    background: url('../icon/emotion.png');
+    background-size: 16px 16px;
+    height: 16px;
+    width: 16px;
+}
+.emotion:hover {
+    background: url('../icon/emotion1.png');
+    background-size: 16px 16px;
+    height: 16px;
+    width: 16px;    
+}
+.checkbox_input {
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.checkbox_shadow {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    color: #838383;
+    border: 1px solid;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+.checkbox_text {
+    margin-left: 5px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 2;
+    vertical-align: middle;
+}
+.checkbox_icon {
+    color: #fff;
+    height: 0.75rem;
+    vertical-align: top;
+    width: 0.75rem;
+}
+.checkbox_shadow_checked {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    color: #1296db;
+    background-color: #1296db;
+    border: 1px solid;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+}
+.button_disabled {
+    background: #1296db;
+    color: #fff;
+    border-radius: 2.25rem;
+    cursor: not-allowed;
+    opacity: 0.5;
+    width: 86px;
+    padding-left: 0;
+    padding-right:0;
+    font-size: 13px;
+    padding: 0.5625rem 1.875rem;
+    border: 0;
+    font-weight: 600;
+    line-height: 2;
+    outline: 0;
+    position: relative;
+}
+.button_comment {
+    background: #1296db;
+    color: #fff;
+    border-radius: 2.25rem;
+    cursor: pointer;
+    opacity: 0.8;
+    width: 86px;
+    padding-left: 0;
+    padding-right:0;
+    font-size: 13px;
+    padding: 0.5625rem 1.875rem;
+    border: 0;
+    font-weight: 600;
+    line-height: 2;
+    outline: 0;
+    position: relative;
+}
+.button_comment:hover {
+    opacity: 1;
+}
+.comment_item {
+    margin:-2px 0 0 0px;
+    box-sizing: border-box;
+    align-self: stretch;
+    flex: 1;
+}
+.text {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+.comment_bottom {
+    height: 22px;
+    margin:1px 0 0 ;
+    color:#939393;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+}
+.comment_bottom_todo {
+
+}
+.comment_middle {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border-color: #f2f2f2;
+
+}
+.commentType {
+    margin:0 0 -17px 5px;
+    align-items: center;
+    display: flex;
+}
+.item_curr {
+    font-weight: 700;
+    color: #1296db;
+    padding: 14px 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.item {
+    padding: 14px 15px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+

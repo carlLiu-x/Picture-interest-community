@@ -1,0 +1,67 @@
+.AddPost_box {
+    justify-content: space-around;
+    background-color:#262626;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    flex-direction: column;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    border: 0 solid #000;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+    
+}
+.AddPost_box_main_container {
+    flex-shrink: 1;
+    justify-content: center;
+    margin: 20px;
+    align-items: stretch;
+    border: 0 solid #000;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+}
+.AddPost_box_main_container_1 {
+    height: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+    max-height: 100%;
+    overflow: hidden;
+    align-items: stretch;
+    border: 0 solid #000;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+.AddPost_box_main_container_2 {
+    width: 630px;
+    max-width: 688px;
+    min-width: 348px;
+    min-height: 391px;
+    max-height: 731px;
+}
+.AddPost_box_main_container_top {
+    width:100%;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.AddPost_box_title {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}

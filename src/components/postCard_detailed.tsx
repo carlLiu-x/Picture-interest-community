@@ -1,187 +1,150 @@
 //帖子的详细界面组件 
 //输出 PostCardD
 import React from 'react';
-import { Modal,Avatar,Carousel,Image, Drawer,Comment,List} from 'antd';
-import Meta from 'antd/lib/card/Meta';
+import "../css/postCardD.css";
 import "../css/postCard.css";
-import pointURL from "../icon/point.png";
-import loveURL from "../icon/love_black_1.png";
-import commentURL from "../icon/comment.png";
-import postURL from "../icon/airplane_black.png";
-import postURL_1 from "../icon/post.png";
-import disloveURL from "../icon/love_black_2.png";
-import PostComment from './Postcomment';
-import {get,post} from '../axios/axios'
-
-
- 
+// import {get,post} from '../axios/axios';
+import AvatarPost from "../components/common/avatar"
+import CommentList from './postCommentList';
 
 class PostCardD extends React.Component<any,any> {
-  
+  photoAlbum:[] = this.props.photoAlbum;
+  img:HTMLImageElement = new Image();
   constructor(props:any){
     super(props);
+    this.img.src = this.props.choosePicture;
     this.state={
-      visible: this.props.visible,
-      drawerVisible: false,
-      postInformation:{},
-      photoUrl:[],
-      commentNumber:0,
-      likeNumber:0,
-      postID:-1,
-      postType:-1,
-      commentList:[],
-      likeJudge:false
+      choosePicture:this.props.choosePicture,
+      postInformation:this.props.postInformation,
+      commentList:this.props.commentList,
+      pictureId:this.props.pictureId
+    }
+  } 
+  leftMove = ()=>{
+    if(this.state.pictureId > 0) {
+      this.img = this.photoAlbum[this.state.pictureId - 1]
+      this.setState({pictureId:this.state.pictureId - 1})
+    }
+  }
+  rightMove = ()=>{
 
-    }
-  }
-  //评论抽屉的打开
-  showDrawer = () =>{
-    const data = {
-      PostId:this.state.postId,
-      PostType:this.state.postType
-    }
-    console.log(data)
-    get("/api/v1/mainPage/comment",data).then((res)=>{
-      console.log(res.data)
-      this.setState({drawerVisible:true,
-                      commentList:res.data.CommentList})
-    })
-    
-  }
-  //评论抽屉的关闭
-  onClose = () => {
-    this.setState({drawerVisible:false})
-  }
-  //对于详情帖子的关闭
-  handleCancel = () =>{
-  this.setState({visible:!this.state.visible})
-  this.forceUpdate();
-  }
-
-  setVisible = (_postInformation:any) =>{
-    this.setState({visible:!this.state.visible,
-                  postInformation:_postInformation,
-                  photoUrl:_postInformation.PhotoUrl,
-                  commentNumber:_postInformation.Post.CommentNumber,
-                  likeNumber:_postInformation.Post.LikeNumber,
-                  postId:    _postInformation.Post.PostId,
-                  postType:  _postInformation.PostType})
-    console.log(_postInformation.Post.PostId)
-  }
-  componentDidMount(){
-    this.props.onRef(this)
-    
-  
-  }
-  like =()=>{
-    const data = {
-      PostId:1,
-      UserId:this.state.postId
-    }
-    if(this.state.likeJudge == true){
-      post("/api/v1/mainPage/cancelLike",data).then((res)=>{
-        console.log(res.data);
-        if(res.data.message == 'OK'){
-          this.setState({likeJudge: !this.state.likeJudge,
-                         likeNumber:this.state.likeNumber -1})
-        }
-        
-      })
-    }
-    else {
-      post("/api/v1/mainPage/like",data).then((res)=>{
-        console.log(res.data)
-        if(res.data.message == 'OK'){
-          this.setState({likeJudge: !this.state.likeJudge,
-                         likeNumber:this.state.likeNumber + 1})
-        }
-      })
-
+    if(this.state.pictureId < this.photoAlbum.length + 1) {
+      this.img = this.photoAlbum[this.state.pictureId + 1]
+      this.setState({pictureId:this.state.pictureId + 1})
     }
    
-  }  
-  
-
-
-  render() {
-    let pictureArray:[] = this.state.photoUrl;
+  }
+  readImg=()=>{
     
+  } 
+  click_like=()=>{
 
+  }
+  openComment=()=>{
+
+  }
+  render(): React.ReactNode {
     return (
-      <>
-        
-        <Modal
-          visible={this.state.visible}
-          footer={null}
-          width={600}
-          closable={false}
-          centered={true}
-          destroyOnClose = {true}
-          onCancel={this.handleCancel}
-          maskClosable={true}
-        >   
-            <div className='postCard'>
-              <div id="userInformation">
-              <Avatar src={this.state.postInformation.PublisherProfileUrl} />
-              <p>{this.state.postInformation.PublisherName}</p>
-              <p></p>    <p></p>   <p></p>   <p></p>  <p></p> 
-              <p></p>   <p></p>   <p></p>   <p></p>   <p></p> 
-              <p></p>  <p></p>   <p></p>   <p></p>   <p></p> 
-              <p></p>   <p></p>   <p></p>   <p></p>  <p></p> 
-              <input type='image' src={pointURL} style={{height:20,width:20}}></input>
-
+    <div style = {{minHeight:"100%"}}>
+      <div className = "floatingWindow">
+        <div className ="fwButtonBox">
+          <i className = "fwCloseButtonIcon" onClick={this.props.closePost}></i>
+        </div>
+        <div className = "box_item_flex">
+          <div className = "viewer_container">
+            <div className = "picture_viewer_container">
+              {this.state.pictureId !=0&&<div className = "fwButtonBox" style ={{width:60,height:60,top:"45%",left:"2%"}}>
+                <i className = "left_arrow_icon" onClick={this.leftMove}></i>
+              </div>}
+              {this.state.pictureId !=this.photoAlbum.length -1&&<div className = "fwButtonBox" style ={{width:60,height:60,top:"45%",left:"90%"}}>
+                <i className = "right_arrow_icon" onClick={this.rightMove}></i>
+              </div>}
+              <div style = {{width:"100%",height:"100%",position:"relative",overflow:"auto"}}>
+                <div style = {{width:"100%",height:"100%",userSelect:"none",position:"relative",overflow:"hidden",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                
+                  <div className = "picture_box" style = {{width:this.img.width,height:this.img.height}}>
+                    <img src = {this.photoAlbum[this.state.pictureId]} style = {{width:"100%",height:"100%"}} onClick = {this.readImg}></img>  
+                  </div>
+                </div>
               </div>
-           
-             <Carousel cssEase='linear' className="PostCarousel" >
-{/*                 
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />
-                    <Image width={600} height={400} src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png" />  */}
-                     {pictureArray.map((item) =>{
-                       return <Image width={600} height={400} src={item} />
-                     })}
-            </Carousel>
-            <div id='postCard_action'>
-            <input type='image' src={this.state.likeJudge == false?loveURL:disloveURL} className='postcard_icon' onClick={this.like}></input>
-            <input type='image' src={commentURL} className='postcard_icon'id = "likeButton" onClick={this.showDrawer}></input>
-            <input type='image' src={postURL} className='postcard_icon'></input>
             </div>
-            <p className='comment_information'>喜爱{this.state.likeNumber}</p> 
-            <p className='comment_information'>主feed</p>
-            <p className='comment_information'>全部{this.state.commentNumber}评论</p>
-            {/* <div id='comment'>
-              <a></a>
-              <input type='text' style={{width:400}}></input>
-              <input type='image' src={postURL_1} className='postcard_icon'></input>
-            </div> */}
+            <div className="picture_preview_list">
+              {this.photoAlbum.map((item:string,index:number)=>{
+                return(
+                      <li className = "preview_item">
+                        <div style ={{position:"absolute",top:0,right:0,left:0,bottom:0}}>
+                          <div className = {item == this.photoAlbum[this.state.pictureId]?"preview_choose_border":""}></div>
+                          <img style = {{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center"}} src = {item}></img>
+                        </div>
+                      </li>
+             ) })}
             </div>
-            <Drawer title = "评论" 
-                    placement='right' 
-                    onClose={this.onClose} 
-                    visible = {this.state.drawerVisible}
-                    closable={false}
-                    
-                    style = {{position:'absolute'}}
-                    >
-                     
-                      <List
-                        dataSource={this.state.commentList}
-                        renderItem={(item:any) =>(
-                            <li>
-                                <PostComment commentList = {item}/>
-                                
-                            </li>
-                        )}>
+          </div>
+        </div>
+        <div className = "fw_comment_box">
+            <div className = "fw_comment_background">
+              <div className = "fw_comment_main">
+                <article className = "fw_comment_main_sender">
+                  <div className = "fw_comment_main_sender_feed">
+                    <header style = {{display:"flex"}}>
+                      <AvatarPost avatarSrc ={this.props.UserProfile} style = {{height:40,width:40}}></AvatarPost>
+                      <div className = "post_top_inner">
+                        <div className="avatar_name">
+                          <a className="avatar_link" href="/u/1304552850">
+                            <span title={this.props.publisherName}>{this.props.publisherName}</span>
+                          </a>            
+                        </div>
+                        <div className="avatar_description">
+                          <a title={this.state.postInformation.CreatedAt.substr(0,10)+" "+this.state.postInformation.CreatedAt.substr(11,8)} href="" className="post_time">{this.state.postInformation.CreatedAt.substr(0,10)+" "+this.state.postInformation.CreatedAt.substr(11,8)}</a>
+                        </div>
+                      </div>
+                      
+                    </header>
+                    <div className = "fw_comment_main_sender_feed_text">
+                        #feed
+                    </div>
+                    <div className ="post_bottom">
+                        <div className="bottom_item">
+                            <div className="bottom_item_inner">
+                                <span>
+                                    <i data-v-76c52272="" className="transmit"></i>
+                                    <span data-v-76c52272="" className="transmit_text">29</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="bottom_item">
+                            <div className="bottom_item_inner">
+                                <span>
+                                    <i className="comment" title="评论" onClick={this.openComment}></i>
+                                    <span className="transmit_text">157</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div className="bottom_item">
+                            <div className="bottom_item_inner">
+                                <span>
+                                    <i className={this.state.like?"liked":"like"} onClick={this.click_like} title = "点赞"></i>
+                                    <span className='transmit_text'>{12}</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </article>
+                <div className = "fw_comment_middle_box">
+                  <div>
+                    <div className = "fw_comment_middle_box_text">评论</div>
+                  </div>
+                </div>
+                {this.state.commentList.map((item:any,index:number) =>{
+                  return <CommentList commentInformation = {item} commentId = {index}></CommentList>
+               })}
+              </div>
+            </div>
 
-                    </List>
-              
-        </Drawer> 
-                        
-        </Modal>
-       
-       
-      </>
+          </div>
+      </div>
+    </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Avatar, Row, Col, Tabs, Space, List } from "antd";
 import { userPostsGet } from "../services/userApi";
-import PostCard from "./postCard";
+import PostCard1 from "./postCard1_1";
 
 const { TabPane } = Tabs;
 
@@ -44,7 +44,7 @@ export default function UserContent(): JSX.Element {
                                 dataSource={dataSource}
                                 renderItem={(item: any) => (
                                     <li>
-                                        <PostCard pictureUrl={item.PhotoUrl[0]} postInformation={item.Post} UserProfile={item.SenderProfileUrl}></PostCard>
+                                        <PostCard1 pictureUrl={item.PhotoUrl[0]} postInformation={item.Post} UserProfile={item.PublisherProfileUrl}></PostCard1>
 
                                     </li>
                                 )}>
