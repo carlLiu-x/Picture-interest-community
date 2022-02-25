@@ -12,7 +12,7 @@ import { UploadFileStatus } from 'antd/lib/upload/interface'
 import { fileURLToPath } from 'url'
 const { Header, Sider, Content } = Layout;
 
-
+// 图片转base64
 function getBase64(file: Blob) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -21,6 +21,7 @@ function getBase64(file: Blob) {
       reader.onerror = error => reject(error);
     });
 }
+
 class PostPicture extends Component<any,any> {
     static childContextTypes = {
       pictureurl:PropTypes.string,
@@ -116,6 +117,7 @@ class PostPicture extends Component<any,any> {
         );
         return(
             <Layout>
+              {/* 左侧走马灯及图片上传sider */}
             <Sider className="picture-upload-sider" width={800} theme = "light">
               {/* 走马灯 */}
                 <Content className="picture-upload-show">
@@ -143,7 +145,9 @@ class PostPicture extends Component<any,any> {
                     </Modal>
                 </Content>
             </Sider>
+            {/* 右侧图片编辑及帖子上传 */}
             <Layout className="picture-design-side">
+              {/* 右侧顶端头部左右导航栏（左为图片编辑，右为帖子上传） */}
                 <Header className="post-router-head" >
                 <NavLink className="post-router-head-edit" to="/mainPage/send/edit" >
                 <Button ghost type="text" icon={<LeftOutlined />} className="post-router-head-before" />
@@ -152,10 +156,13 @@ class PostPicture extends Component<any,any> {
                 <Button ghost type="text" icon={<RightOutlined />} className="post-router-head-next" />                 
                 </NavLink>
                 </Header>
+                {/* 头部导航栏路由 */}
                 <Layout > 
                 <Routes>
                   <Route path="/" element={<PostPictureEdit />} />
+                  {/* 图片编辑 */}
                   <Route path="/edit/*" element={<PostPictureEdit />}/>
+                  {/* 帖子发送 */}
                   <Route path="/post/*" element={<PostPicturePost />}/>
                 </Routes>
                 </Layout>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../css/postPictureCarousel.css';
 import { Carousel,Image } from 'antd';
@@ -28,10 +29,10 @@ class PostpictureCarousel extends React.Component<any, any>{
                 </Sider>
                 <Sider  width={700} className="picture-carousel-mid-sider">
                 <Carousel  className={'Carousel'} ref={dom => { this.img = dom; }} >
-                    {/* <div><img src={require('../icon/steamtest.png')} alt="" className="carousel_image_type"/></div>
+                    <div><img src={require('../icon/steamtest.png')} alt="" className="carousel_image_type"/></div>
                     <div><img src={require('../icon/airplane.png')} alt="" className="carousel_image_type"/></div>
                     <div><img src={require('../icon/home.png')} alt="" className="carousel_image_type"/></div>
-                    <div><img src={require('../icon/love.png')} alt="" className="carousel_image_type"/></div> */}
+                    <div><img src={require('../icon/love.png')} alt="" className="carousel_image_type"/></div>
                 </Carousel>
                 </Sider>
                 <Sider theme = "light" width={50} className="picture-carousel-right-sider">
@@ -43,4 +44,5 @@ class PostpictureCarousel extends React.Component<any, any>{
     }
 
 }
+
 export default PostpictureCarousel
