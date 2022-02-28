@@ -67,15 +67,8 @@ class PostCard1 extends React.Component<any,any> {
                 <article className="scroller_item_inner" tabIndex={0}>  
                 <div className="post_body">
                     <header style={{display: 'flex'}}>
-                        {/* <a href="/u/1304552850" aria-label={this.props.publisherName} style = {{color:'inherit'}}>
-                            <div className="post_avatar" >
-                                <img src={this.props.UserProfile} className="avatar_img" />
-                                    
-                                    <div className="avatar_hoverMask"></div>
-                            </div>
-                        </a> */}
                         <AvatarPost avatarSrc={this.props.UserProfile} style={{height:'3.25rem',width:'3.25rem'}}></AvatarPost>
-                        
+                        {console.log(this.props.UserProfile)}
                         <div className="post_top_main">
                             <div className="post_top_inner">
                                 <div className="avatar_name">

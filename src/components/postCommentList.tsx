@@ -23,8 +23,6 @@ class CommentList extends React.Component<any,any> {
         console.log("compoent")
     }
     render(): React.ReactNode {
-        
-    
         return(
             <div style = {{width:"100%",lineHeight:"20px",fontSize:"12px"}}>
             <div style = {{padding:"7px 20px"}}>

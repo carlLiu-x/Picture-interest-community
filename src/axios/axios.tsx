@@ -17,7 +17,6 @@ export const post = (url:string,data:any)=>{
         data:data
     })
 }
-
 // post by params
 export const post2 = (url:string,data:any)=>{
     return http.request({
