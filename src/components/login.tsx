@@ -21,6 +21,7 @@ class Login extends React.Component {
             console.log(responce.data);
             if(responce.data.message === 'OK'){
                 if(set("uid",`${responce.data.uid}`)){
+                    set("user_token",`${responce.data.token}`)
                     document.getElementById('tohomepage')?.click();
                     console.log("click");
                     success();
