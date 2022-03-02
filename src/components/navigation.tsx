@@ -70,7 +70,7 @@ class Navigation extends React.Component<any,any> {
                 <a href = './user' style = {{display:'none'}} id = 'userPage'></a>
                 <a href = './edit1' style = {{display:'none'}} id='postPage'> </a>
                 <div style={{marginLeft:20,height:30,width:30}}>
-                 <AvatarPost style = {{width:30,height:30}} userId = {localStorage.getItem("uid")} avatarSrc = {this.state.userProfile}></AvatarPost>
+                 <AvatarPost style = {{width:30,height:30}} userID = {localStorage.getItem("uid")} avatarSrc = {this.state.userProfile}></AvatarPost>
                 </div>           
             </div>
             {this.state.addPost&&<AddPost closeAddPost = {this.closeAddPost}></AddPost>}

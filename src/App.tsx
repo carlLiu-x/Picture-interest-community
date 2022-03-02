@@ -15,6 +15,7 @@ import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import PostCard from './components/postCard';
+import LoginWeb from './components/loginWeb';
 const { Header, Content, Footer } = Layout;
 
 class App extends React.Component {
@@ -22,17 +23,35 @@ class App extends React.Component {
         return (
         <BrowserRouter>
         <Log></Log>
-            <Layout>
-             <Navigation/>
-                <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
-                <Routes>
-                    <Route path='/homepage' element={<MainPage></MainPage>}></Route>
-                    <Route path='/edit' element={<EditPage></EditPage>}></Route>
-                    <Route path='/user/:user' element={<UserPage></UserPage>}></Route>
-                    
-                </Routes>
+     
+            <Routes>
+                <Route path='/homepage' element={
+                     <Layout>
+                     <Navigation></Navigation>
+                     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
+                <MainPage></MainPage>
                 </Content>
-            </Layout>
+                </Layout>
+                    }></Route>
+                <Route path='/edit' element={
+                     <Layout>
+                     <Navigation></Navigation>
+                     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
+                <EditPage></EditPage>
+                </Content>
+                </Layout>
+                }></Route>
+                <Route path='/user/:user' element={
+                     <Layout>
+                     <Navigation></Navigation>
+                     <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 ,marginBottom: '25%'}}>
+                <UserPage></UserPage>
+                </Content>
+                </Layout>
+                }></Route>
+            </Routes>
+            
+            
         </BrowserRouter>
                 
 
