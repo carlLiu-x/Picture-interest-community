@@ -7,22 +7,6 @@ import {Menu,Space,List} from 'antd';
 import PostCard1 from './postCard1_1';
 import {get,post} from '../axios/axios';
 import axios from 'axios';
-
-interface Post {
-    PostId: number;
-    CreatedAt: Date;
-    UpdatedAt: Date;
-    DeletedAt: Date;
-    PublisherId:string;
-    PhotoNumber:string;
-    Content:any;
-    CommentNumber: number;
-    ForwardNumber: number;
-    LikeNumber: number;
-    CollectionNumber: number;
-    PhotoPathUrl: string;
-    Location: string;
-}
 class MainPage extends React.Component<any,any>{
     constructor(props:any)
     {
@@ -34,22 +18,21 @@ class MainPage extends React.Component<any,any>{
     }
     
     componentDidMount(){
-        // const data = {
-        //     UserId: localStorage.getItem("uid"),
-        // }
+        let userId = Number(localStorage.getItem("uid"));
         const data = {
-            UserId: 1,
-        }
-        console.log(localStorage.getItem("uid"))
+            UserId: userId,
+        }   
         get("/api/v1/mainPage/page",data).then((res) =>{
-            //判空处理
-             console.log(res.data.PostList)
-             this.setState({postList:res.data.PostList})    
-              
+            if(res.data == null) {
+                window.alert("网络异常")
+            } else {
+                console.log(res.data.PostList)
+                console.log(res.data)
+                this.setState({postList:res.data.PostList})  
+            } 
         })
     }
     render(): React.ReactNode {
-        
         return(
         <div className = 'mainPage'>
             <div className = 'Page_left'>
@@ -83,7 +66,7 @@ class MainPage extends React.Component<any,any>{
                 <div className = 'scroll_container'>
                     {
                         this.state.postList.map((item:any,index:number) =>{
-                            return <PostCard1  senderName = {item.senderName} index={index} publisherName ={item.PublisherName} pictureUrl = {item.PhotoUrl} postInformation = {item.Post} postType = {item.PostType}UserProfile = {item.PublisherProfileUrl}></PostCard1>
+                            return <PostCard1  senderName = {item.senderName} index={index} publisherName ={item.PublisherName} pictureUrl = {item.PhotoUrl} postInformation = {item.Post} postType = {item.PostType}UserProfile = {item.PublisherProfileUrl} isLike = {item.IsLiked}></PostCard1>
                         })
                     }
                 </div>   

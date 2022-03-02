@@ -15,7 +15,6 @@ class MorePicture extends React.Component<any,any> {
         return(
             <div className = "picture_display">
                 <Carousel  photoAlbum = {this.props.photoAlbum} pictureId = {this.props.pictureId}></Carousel>
-                {console.log(this.props.pictureId)}
                 <div className = "ButtonBox" style = {{left:10}}>
                     <div className = "ButtonIcon"></div>
                 </div>

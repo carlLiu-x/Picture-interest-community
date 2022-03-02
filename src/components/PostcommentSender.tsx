@@ -1,13 +1,8 @@
 import React, { createRef } from 'react';
 import '../css/postComment.css';
-import { post } from '../axios/axios';
+import { post,post2 } from '../axios/axios';
 import AvatarPost from './common/avatar';
-
-
-
-
-
-
+import qs from 'querystring'
 class PostCommentSender extends React.Component<any,any>{
     commentSendJudge:boolean = false;
     modal: React.RefObject<unknown>;
@@ -77,33 +72,31 @@ class PostCommentSender extends React.Component<any,any>{
       this.setState({commentText:e.target.value})
     }
     postComment =()=>{
-      
-      let data = {
+      let userId = Number(localStorage.getItem("uid"));
+      const temp_data = {
         PostId: this.props.postId,
         PostType: this.props.postType,
-        UserId: localStorage.getItem("uid"),
+        UserId: userId,
         Content: this.state.commentText,
         ParentId: -1
       }
+      let data = qs.stringify(temp_data);
       post("/api/v1/mainPage/insertComment",data).then((res) =>{
-        console.log("result")
-        console.log(res)
+        console.log(res.data)
       })
     }
     render(): React.ReactNode {
-        
         return(
-          
           <div style = {{backgroundColor:"#ffffff"}}>
             <div className="comment_blank"></div>
             <div style = {{paddingTop:"10px"}}>
               <div style = {{display:'flex',margin:"0 20px"}}>
-                <AvatarPost style = {{height:40,width:40}} avatarSrc = {this.props.UserProfile}></AvatarPost>
+                <AvatarPost style = {{height:40,width:40}} avatarSrc = {localStorage.getItem("userProfile")}></AvatarPost>
                 <div className="comment_box">
                   <div>
                     <div>
                       <div className={this.state.inputFocus?"comment_input_box_focus":"comment_input_box"}>
-                        <textarea style={{height:"auto"}}placeholder="发布你的评论" className="comment_input" onFocus={this.changeInputStyle} onBlur = {this.recoverInputStyle} onChange = {this.debounce(this.readTextArea,1000)}></textarea>
+                        <textarea style={{height:"auto"}}placeholder="发布你的评论" className="comment_input" onFocus={this.changeInputStyle} onBlur = {this.recoverInputStyle} onChange = {this.debounce(this.readTextArea,100)}></textarea>
                       </div>
                     </div>
                     <div style = {{margin:"10px 0"}}>

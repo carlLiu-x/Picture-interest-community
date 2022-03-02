@@ -11,8 +11,9 @@ class Request {
         const config = {
             baseURL: this.baseUrl,
             headers: {
-
+                Authorization: "Bearer "+ localStorage.getItem("user_token")
             }
+            
         }
         return config;
     }

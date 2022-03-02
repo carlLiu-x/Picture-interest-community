@@ -9,7 +9,7 @@ import PostCardD from './postCard_detailed';
 import PostCommentSender from './PostcommentSender';
 import PostComment from './postComment';
 import { post,get } from '../axios/axios';
-
+import qs from 'querystring'
 
 const { Meta } = Card;
 
@@ -24,7 +24,7 @@ class PostCard1 extends React.Component<any,any> {
             isActive : false,
             postInformation: this.props.postInformation,
             photoAlbum: this.props.pictureUrl,
-            like: false,
+            like: this.props.isLike,
             likeNumber: this.props.postInformation.LikeNumber,
             commentIsOpened: false,
             postType: this.props.postType,
@@ -38,17 +38,33 @@ class PostCard1 extends React.Component<any,any> {
             PostType: this.state.postType
         }
         get("/api/v1/mainPage/comment",data).then((res) =>{
+
             this.setState({commentIsOpened: !this.state.commentIsOpened,commentList:res.data.CommentList})
-            console.log(res.data.CommentList)
+            console.log(res.data)
         })
         
     }
     click_like =() =>{
+        let temp_data = {
+            PostId: this.state.postInformation.PostId,
+            UserId: 1,
+            PostType: this.state.postType
+        }
         if(this.state.like) {
+            
             this.setState({like:!this.state.like,likeNumber:this.state.likeNumber - 1})
+            let data = qs.stringify(temp_data);
+            post("/api/v1/mainPage/cancelLike",data).then((res) => {
+                console.log(res)
+            })
         }
         else {
             this.setState({like:!this.state.like,likeNumber:this.state.likeNumber + 1})
+            
+            let data = qs.stringify(temp_data);
+            post("/api/v1/mainPage/like",data).then((res) => {
+                console.log(res)
+            } )
         }
         
      }
@@ -68,7 +84,6 @@ class PostCard1 extends React.Component<any,any> {
                 <div className="post_body">
                     <header style={{display: 'flex'}}>
                         <AvatarPost avatarSrc={this.props.UserProfile} style={{height:'3.25rem',width:'3.25rem'}}></AvatarPost>
-                        {console.log(this.props.UserProfile)}
                         <div className="post_top_main">
                             <div className="post_top_inner">
                                 <div className="avatar_name">
@@ -90,7 +105,10 @@ class PostCard1 extends React.Component<any,any> {
                         </div>
                     </header>
                     <div style = {{paddingLeft:60}}>
-                        <a href="" className="avatar_link">#feed</a>
+                        <a href="" className="avatar_link" style={{fontSize:12}}>#feed</a>
+                        <div className ="postcard_content">
+                            <div>{this.state.postInformation.Content}</div>
+                        </div>
                         <div className="margin_top">
                             <div className="picture_album" >
                             {this.state.photoAlbum.map((item:string,index:number) =>{
@@ -131,6 +149,7 @@ class PostCard1 extends React.Component<any,any> {
                         <div className="bottom_item">
                             <div className="bottom_item_inner">
                                 <span>
+                                    
                                     <i className={this.state.like?"liked":"like"} onClick={this.click_like} title = "点赞"></i>
                                     <span className='transmit_text'>{this.state.likeNumber}</span>
                                 </span>

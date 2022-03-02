@@ -13,8 +13,10 @@ class CommentList extends React.Component<any,any> {
         super(props)
         this.state = {
             liked:false,
-            
+            commentInformation:this.props.commentInformation,
+            showAvatar:this.props.showAvatar
         }
+        console.log(this.props.commentInformation)
     }
     click_like = ()=>{
         this.setState({liked:!this.state.liked})
@@ -27,17 +29,18 @@ class CommentList extends React.Component<any,any> {
             <div style = {{width:"100%",lineHeight:"20px",fontSize:"12px"}}>
             <div style = {{padding:"7px 20px"}}>
                     <div style = {{display:"flex"}}>
-                        <AvatarPost avatarSrc = "http://120.27.196.130:8080/images/profile/2/profile_1.jpg" style = {{height:40,width:40}}></AvatarPost>
+                        {this.state.showAvatar&&<AvatarPost avatarSrc = {this.state.commentInformation.ProfileUrl} style = {{height:30,width:30}}></AvatarPost>}
                         <div className="comment_item">
                             <div className="text" style = {{fontSize:10}}>
                                 <a className="avatar_link" style={{color:"#1890ff"}} href="/u/1304552850">
-                                    <span title={"123"}>{"ligang"}</span>
+                                    <span title={"123"}>{this.state.commentInformation.UserName}</span>
                                 </a>      
                                 :
-                                <span>{"这些图片太喜庆了"}</span> 
+                                <span>{this.props.commentInformation.Comment.Content}</span>
                             </div>
                             <div className="comment_bottom" style={{fontSize:9}}>
-                                <a title="12" href="" className="post_time" >{"2022-02-22 19:23:11"}</a>
+                                
+                                <a title="12" href="" className="post_time" >{this.state.commentInformation.Comment.CreatedAt.substr(0,10)+" "+this.state.commentInformation.Comment.CreatedAt.substr(11,8)}</a>
                                 <footer style ={{width:200}}>
                                     <div style = {{display:"flex"}}>
                                         <div className="bottom_item">

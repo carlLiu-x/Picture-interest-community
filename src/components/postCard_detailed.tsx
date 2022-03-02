@@ -22,15 +22,20 @@ class PostCardD extends React.Component<any,any> {
   } 
   leftMove = ()=>{
     if(this.state.pictureId > 0) {
-      this.img = this.photoAlbum[this.state.pictureId - 1]
-      this.setState({pictureId:this.state.pictureId - 1})
+      this.img.src = this.photoAlbum[this.state.pictureId - 1]
+      this.img.onload = ()=>{
+        this.setState({pictureId:this.state.pictureId - 1})
+      }
+      
     }
   }
   rightMove = ()=>{
 
     if(this.state.pictureId < this.photoAlbum.length + 1) {
-      this.img = this.photoAlbum[this.state.pictureId + 1]
-      this.setState({pictureId:this.state.pictureId + 1})
+      this.img.src = this.photoAlbum[this.state.pictureId + 1]
+      this.img.onload = ()=>{
+        this.setState({pictureId:this.state.pictureId + 1})
+      }
     }
    
   }
@@ -137,7 +142,7 @@ class PostCardD extends React.Component<any,any> {
                   </div>
                 </div>
                 {this.state.commentList.map((item:any,index:number) =>{
-                  return <CommentList commentInformation = {item} commentId = {index}></CommentList>
+                  return <CommentList showAvatar = {false}commentInformation = {item} commentId = {index}></CommentList>
                })}
               </div>
             </div>

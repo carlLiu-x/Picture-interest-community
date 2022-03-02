@@ -8,7 +8,7 @@ class PostComment extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
         this.state = {
-            commentList:this.props.commentList,
+            commentList:this.props.commentList||[],
             mode:true
         }
     }
@@ -28,9 +28,8 @@ class PostComment extends React.Component<any,any> {
                         <div className={this.state.mode?"item":"item_curr"} onClick={this.chooseMod}>按时间</div>
                     </div>
                 </div>
-                
                {this.state.commentList.map((item:any,index:number) =>{
-                  return <CommentList commentInformation = {item} commentId = {index}></CommentList>
+                  return <CommentList showAvatar = {true}commentInformation = {item} commentId = {index}></CommentList>
                })}
             </div>
         );

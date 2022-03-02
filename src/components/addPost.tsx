@@ -5,18 +5,28 @@ import axios from 'axios';
 import EmptyPicture from './addPost_empty';
 import MorePicture from './addPost_choosePicture';
 import AddComment from './addPost_comment';
-
+import {post} from '../axios/axios';
 class AddPost extends React.Component<any,any> {
-    
+    content:string = "";
     constructor(props:any){
         super(props);
         this.state = {
             FileList:[],
             imgSrc:"",
             pictureId:-1,
-            step:"empty"
+            step:"empty",
             // empty-初始状态 cutPicture-图片裁剪 choose-选择滤镜 comment-添加评论
+            
         }
+    }
+    getLocalTime = () =>{
+        let date = new Date();
+        let time:string = String(date.getFullYear()) +"-"+String(date.getMonth() + 1)+"-"+String(date.getDate()+" "+ String(date.getHours()) +":"+String(date.getMinutes()) + ":" + String(date.getSeconds()))
+        return time;
+    }
+    getContent = (e:any)=>{
+        this.content = e.target.value;
+        
     }
     choosePicture = ()=>{
         document.getElementById("choosePicture")?.click()
@@ -24,15 +34,40 @@ class AddPost extends React.Component<any,any> {
     nextStep = ()=>{
         switch(this.state.step) {
             case "cutPicture": 
-                this.setState({step:"choose"});
+                this.setState({step:"comment"});
             break
             case "choose":
                 this.setState({step:"comment"})
             break
             case "comment":
-                //像后端提交图片
-            break
+                let userId = Number(localStorage.getItem("uid"));
+                let send_data = {
+                    imgList: this.state.FileList,
+                    contents: this.content,
+                    date: this.getLocalTime(),
+                    uid: userId,
+                    location: "wuhan"                    
+                }
+                axios({
+                    method: 'post',
+                    url: '/api/v1/mainPage/send',
+                    headers: {
+                        'Authorization': "Bearer "+ localStorage.getItem("user_token"),
+                        'Content-Type': 'application/json' 
+                    },
+                    data: send_data
+                }).then(res =>{
+                    if(res.data.message !="OK") {
+                        console.log(res)    
+                        window.alert("网络异常，请稍后再试")
+                        
+                    }else {
+                        console.log(res.data)
+                        this.props.closeAddPost();
 
+                    }
+                })
+            break
         }
     }
     backStep = ()=>{
@@ -51,10 +86,8 @@ class AddPost extends React.Component<any,any> {
     handleImageChange = (e:any)=>{
         
         e.preventDefault();
-        console.log(e.target.value)
         let reader = new FileReader();
         let file = e.target.files[0];
-        console.log(file);
         reader.readAsDataURL(file);
         reader.onloadend =()=>{
             let tempArray = this.state.FileList;
@@ -88,7 +121,7 @@ class AddPost extends React.Component<any,any> {
                                       <MorePicture photoAlbum = {this.state.FileList} pictureId = {this.state.FileList.length-1} step = {this.state.step} choosePicture = {this.choosePicture}>
                                       </MorePicture>  
                                     }      
-                                    {this.state.step == "comment"&&<AddComment></AddComment>}
+                                    {this.state.step == "comment"&&<AddComment getContent = {this.getContent}></AddComment>}
                                        <input type={"file"} style = {{display:'none'}} id = "choosePicture" onChange={this.handleImageChange}></input>
                                 </div>
                                 {this.state.step =="choose" && 

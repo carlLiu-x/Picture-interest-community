@@ -1,11 +1,9 @@
 import React from "react";
 import AvatarPost from "./common/avatar";
-
 class AddComment extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
         this.state = {
-
         }
     }
     render(): React.ReactNode {
@@ -18,12 +16,12 @@ class AddComment extends React.Component<any,any> {
                     </div>
                     <div className = "commentArea">
                         <div className = "commentArea">
-                            <textarea placeholder = "添加说明..."className = "comment_textArea"></textarea>
+                            <textarea placeholder = "添加说明..."className = "comment_textArea" onChange={this.props.getContent}></textarea>
                         </div>
                     </div>
                     <div className = "position_box">
                         <label className = "position_input">
-                            
+
                         </label>
                     </div>
                 </div>

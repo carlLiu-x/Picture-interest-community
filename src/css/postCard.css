@@ -84,6 +84,8 @@
     display: inline-block;
     font-size: 1rem;
     position: relative;
+    width: 90%;
+    height: 90%;
 }
 .post_avatar:hover .avatar_hoverMask {
     opacity:10;
