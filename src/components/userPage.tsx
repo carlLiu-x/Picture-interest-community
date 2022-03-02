@@ -4,12 +4,12 @@ import UserContent from "./userContent";
 import { useParams } from "react-router-dom";
 
 export default function UserPage(props:any): JSX.Element {
-    const {user} = useParams();
+    const {user} =useParams();
+
     return (
         <> 
-            {console.log(user)}
-            <UserInfo />
-            <UserContent />
+            <UserInfo uid={user}/>
+            <UserContent uid={user} />
         </>
     );
 }

@@ -13,9 +13,10 @@ import AvatarPost from './common/avatar';
 import { url } from 'inspector';
 import {get} from '../axios/axios';
 
-
 const { Header } = Layout;
 const {Search} = Input;
+const uid = localStorage.getItem("uid");
+
 class Navigation extends React.Component<any,any> {
   constructor(props:any) {
     super(props);
@@ -25,13 +26,13 @@ class Navigation extends React.Component<any,any> {
     get("/api/v1/personalPage/showProfile",data).then(res =>{
       localStorage.setItem("userProfile","/api" + res.data.accountInfo.ProfileUrl);
       this.setState({userProfile: "/api" + res.data.accountInfo.ProfileUrl})
-
     })
     this.state = {
       addPost:false,
       userProfile:""
     }
   }
+
   backHome = ()=>{
       document.getElementById('homePage')?.click();
       console.log("click");
@@ -66,9 +67,9 @@ class Navigation extends React.Component<any,any> {
                 <img  src={CompassURL} className="navigation_icon"></img>
                 <img  src={LoveURL} className="navigation_icon"></img>
                 <></>
-                <a href = './homepage' style = {{display:'none'}}id = 'homePage'></a>
-                <a href = './user' style = {{display:'none'}} id = 'userPage'></a>
-                <a href = './edit1' style = {{display:'none'}} id='postPage'> </a>
+                <a href = '/homepage' style = {{display:'none'}}id = 'homePage'></a>
+                <a href = {'/user/'+uid} style = {{display:'none'}} id = 'userPage'></a>
+                <a href = '/edit1' style = {{display:'none'}} id='postPage'> </a>
                 <div style={{marginLeft:20,height:30,width:30}}>
                  <AvatarPost style = {{width:30,height:30}} userID = {localStorage.getItem("uid")} avatarSrc = {this.state.userProfile}></AvatarPost>
                 </div>           

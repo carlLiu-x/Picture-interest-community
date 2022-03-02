@@ -5,24 +5,30 @@ import {
     SettingOutlined,
 } from "@ant-design/icons";
 import { Card, Avatar, Row, Col, Popconfirm, message } from "antd";
-import { userInfoGet } from "../services/userApi";
+import { userDetailedInfoGet, userInfoGet } from "../services/userApi";
 import { get as localStorageGet, remove as localStorageRemove} from "local-storage";
 
 const { Meta } = Card;
 
-export default function UserInfo(): JSX.Element {
+export default function UserInfo(params: { uid: any; }): JSX.Element {
     const [dataSource, setDataSrouce] = useState({ FansNumber: 0, FollowsNumber: 0, Nickname: "", PostsNumber: 0, Profile: "", Signature: "" });
     const [profileUrl,setProfileUrl] = useState("https://joeschmoe.io/api/v1/random");
-    // const [value,setValue] = useState(0);
+    const uid=localStorageGet("uid");
+    const passUid=params.uid;
+
     //调用接口获取用户信息
     useEffect(() => {
-        userInfoGet({ UserId: localStorageGet("uid") }).then(res => {
+        userInfoGet({ UserId: passUid }).then(res => {
             setDataSrouce(res.data);
-            if(res.data.Profile!==""){
-                setProfileUrl("/api"+res.data.Profile);
-            }
             console.log(dataSource);
-            console.log("uid:"+localStorageGet("uid"));
+            console.log("passUid:"+passUid);
+            console.log("uid:"+uid);
+        })
+        userDetailedInfoGet({ UserId: passUid }).then(res=>{
+            console.log(res);
+            if(res.data.accountInfo&&res.data.accountInfo.ProfileUrl!==""){
+                setProfileUrl("/api"+res.data.accountInfo.ProfileUrl);
+            }
         })
     }, []
     );
@@ -44,7 +50,7 @@ export default function UserInfo(): JSX.Element {
         <>
             <Card
                 style={{ width: "50%", marginLeft: "25%", marginTop: "50px" }}
-                actions={[
+                actions={uid==passUid?[
                     <SettingOutlined key="setting" onClick={() => { window.location.href = "/edit" }} />,
                     <Popconfirm
                         title="确认登出?"
@@ -56,7 +62,7 @@ export default function UserInfo(): JSX.Element {
                         <a href="/">登出</a>
                     </Popconfirm>,
                     // <EllipsisOutlined key="ellipsis" />,
-                ]}
+                ]:[]}
             >
                 <Meta
                     avatar={<Avatar size={128} src={profileUrl} />}

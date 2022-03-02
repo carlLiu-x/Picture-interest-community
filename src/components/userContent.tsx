@@ -7,7 +7,7 @@ import { get as localStorageGet } from "local-storage";
 
 const { TabPane } = Tabs;
 
-export default function UserContent(): JSX.Element {
+export default function UserContent(params: { uid: any; }): JSX.Element {
     // const [dataSource,setDataSrouce] = useState({PageList:[],message:"OK"});
     const [postCard,setPostCard] = useState(false); // 控制帖子详情空间开关
     const [postData,setPostData] = useState([]);
@@ -20,9 +20,13 @@ export default function UserContent(): JSX.Element {
     const [commentList,setCommentList] = useState([]);
     const [commentUpdate,setCommentUpdate] = useState(false);
 
+    const uid=localStorageGet("uid");
+    const passUid=params.uid;
+
+
     //初始化显示帖子需要的数据(用户,帖子,评论)
     useEffect(() => {
-        userPostsGet({ UserId: localStorageGet("uid") }).then(res => {
+        userPostsGet({ UserId: passUid }).then(res => {
             var posts = res.data.PageList;
             for(var i=0;i<posts.length;i++){
                 posts[i]["PhotoPathUrl"] = posts[i]["PhotoPathUrl"].split(";");
@@ -35,10 +39,10 @@ export default function UserContent(): JSX.Element {
                     "Create...
             */
         });
-        userDetailedInfoGet({ UserId: localStorageGet("uid") }).then(res => {
+        userDetailedInfoGet({ UserId: passUid }).then(res => {
             setUserData(res.data);
             // console.log(dataSource);
-            console.log("uid: " + localStorageGet("uid"));
+            console.log("uid: " + passUid);
         })
     }, []
     )
@@ -118,7 +122,7 @@ export default function UserContent(): JSX.Element {
                 activeTabKey={"post"}
             >
                 <Tabs defaultActiveKey="content" centered>
-                    <TabPane tab="我的帖子" key="1">
+                    <TabPane tab={uid==passUid?"我的帖子":"Ta 的帖子"} key="1">
                         <Card>
                         {getListElement()}
                         </Card>
