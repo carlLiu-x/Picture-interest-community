@@ -84,7 +84,7 @@ class PostCard1 extends React.Component<any,any> {
                 <article className="scroller_item_inner" tabIndex={0}>  
                 <div className="post_body">
                     <header style={{display: 'flex'}}>
-                        <AvatarPost avatarSrc={this.props.UserProfile} style={{height:'3.25rem',width:'3.25rem'}}></AvatarPost>
+                        <AvatarPost avatarSrc={this.props.UserProfile} style={{height:'3.25rem',width:'3.25rem'}} userID = {localStorage.getItem("uid")}></AvatarPost>
                         <div className="post_top_main">
                             <div className="post_top_inner">
                                 <div className="avatar_name">

@@ -5,18 +5,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from './components/mainPage';
 import Log from './components/log';
 import PostCardD from './components/postCard_detailed';
-
 import PostPicture from './components/postPicture';
-
 import EditPage from './components/editPage';
 import UserPage from './components/userPage';
 import 'antd/dist/antd.css';
-
 import Navigation from './components/navigation';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import reportWebVitals from './reportWebVitals';
 import { Layout, Menu, Breadcrumb } from 'antd';
+import PostCard from './components/postCard';
 const { Header, Content, Footer } = Layout;
 
 class App extends React.Component {
@@ -30,7 +28,8 @@ class App extends React.Component {
                 <Routes>
                     <Route path='/homepage' element={<MainPage></MainPage>}></Route>
                     <Route path='/edit' element={<EditPage></EditPage>}></Route>
-                    <Route path='/user' element={<UserPage></UserPage>}></Route>
+                    <Route path='/user/:user' element={<UserPage></UserPage>}></Route>
+                    
                 </Routes>
                 </Content>
             </Layout>
