@@ -7,7 +7,7 @@ import AvatarPost from './common/avatar';
 import '../css/postCard.css';
 import PostCardD from './postCard_detailed';
 import PostCommentSender from './PostcommentSender';
-import PostComment from './Postcomment';
+import PostComment from './postComment';
 import { post,get } from '../axios/axios';
 import qs from 'querystring'
 

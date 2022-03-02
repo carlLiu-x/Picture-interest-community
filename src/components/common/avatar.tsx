@@ -15,7 +15,7 @@ class AvatarPost extends React.Component<any,any> {
     }
     render(): React.ReactNode {
         return(
-            <a href="/u/1304552850" aria-label={this.props.userID} style = {{color:'inherit',height:this.props.style.height,width:this.props.style.width}}>
+            <a href={"/user/" +this.props.userID}  aria-label={this.props.userID} style = {{color:'inherit',height:this.props.style.height,width:this.props.style.width}}>
                 <div className="post_avatar" >
                     <img src={this.props.avatarSrc} className="avatar_img" />
                     <div className="avatar_hoverMask"></div>

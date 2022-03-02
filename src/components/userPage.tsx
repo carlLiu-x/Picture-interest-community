@@ -4,7 +4,8 @@ import UserContent from "./userContent";
 
 export default function UserPage(): JSX.Element {
     return (
-        <>
+        <> 
+         
             <UserInfo />
             <UserContent />
         </>
