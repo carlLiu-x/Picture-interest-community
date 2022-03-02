@@ -7,7 +7,7 @@ import AvatarPost from './common/avatar';
 import '../css/postCard.css';
 import PostCardD from './postCard_detailed';
 import PostCommentSender from './PostcommentSender';
-import PostComment from './postComment';
+import PostComment from './Postcomment';
 import { post,get } from '../axios/axios';
 
 
@@ -60,6 +60,7 @@ class PostCard1 extends React.Component<any,any> {
     closePost =() =>{
         this.setState({openPostCard:!this.state.openPostCard})
     }
+
     render(): React.ReactNode {
         return(
             
@@ -100,17 +101,19 @@ class PostCard1 extends React.Component<any,any> {
                         <a href="" className="avatar_link">#feed</a>
                         <div className="margin_top">
                             <div className="picture_album" >
-                            {this.state.photoAlbum.map((item:string,index:number) =>{
-                                return   <div className="picture_container" >
-                                                <div className="picture_square">
-                                                    <div className = 'picture_slot'>
-                                                        <img src={item} className="picture_img"  onClick={(e) =>this.openPost(index,e)} />
+                            {
+                                this.state.photoAlbum.map((item:string,index:number) =>{
+                                    return   <div className="picture_container" >
+                                                    <div className="picture_square">
+                                                        <div className = 'picture_slot'>
+                                                            <img src={item} className="picture_img"  onClick={(e) =>this.openPost(index,e)} />
+                                                        </div>
+                                                        <div className="picture_hoverMask"></div>    
+                                                        <div className="woo-picture-cover"></div>
                                                     </div>
-                                                    <div className="picture_hoverMask"></div>    
-                                                    <div className="woo-picture-cover"></div>
                                                 </div>
-                                            </div>
-                             })}
+                                 })
+                            }
                             </div>
                             
                         </div>

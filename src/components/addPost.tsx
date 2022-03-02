@@ -1,7 +1,7 @@
 import React from 'react';
 import "../css/AddPost.css"
 import "../css/postCardD.css"
-import ReadPicture from './addPost_readPicture';
+// import ReadPicture from './addPost_readPicture';
 
 class AddPost extends React.Component<any,any> {
     constructor(props:any){
