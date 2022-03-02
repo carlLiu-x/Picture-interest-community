@@ -11,14 +11,14 @@ export default function EditPage(): JSX.Element {
                 style={{ width: "50%", marginLeft: "25%", marginTop: "50px" }}
             >
                 <Tabs tabPosition='left'>
-                <TabPane tab="Edit Homepage" key="1">
+                <TabPane tab="个人信息编辑" key="1">
                     <EditUserInfo/>
                 </TabPane>
-                <TabPane tab="Change Password" key="2">
+                <TabPane tab="密码修改" key="2">
                     <EditPassword />
                 </TabPane>
                 <TabPane tab="..." key="3">
-                    To be continued.
+                    未完待续...
                 </TabPane>
                 </Tabs>
             </Card>

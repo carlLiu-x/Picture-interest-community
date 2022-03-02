@@ -1,11 +1,13 @@
 import React from 'react';
-import "../css/AddPost.css"
-import "../css/postCardD.css"
+import "../css/AddPost.css";
+import "../css/postCardD.css";
 import axios from 'axios';
 import EmptyPicture from './addPost_empty';
 import MorePicture from './addPost_choosePicture';
 import AddComment from './addPost_comment';
 import {post} from '../axios/axios';
+// import ReadPicture from './addPost_readPicture';
+
 class AddPost extends React.Component<any,any> {
     content:string = "";
     constructor(props:any){
