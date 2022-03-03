@@ -3,7 +3,7 @@ import { Form, Input, Button, Select, Card, Avatar, Alert, Row, Col, Upload, mes
 import { UploadOutlined } from '@ant-design/icons';
 import { profileImageUpload, userDetailedInfoGet, userDetailedInfoPost, userProfileEdit } from "../services/userApi";
 // import { post } from "../axios/axios";
-import { get as localStorageGet } from "local-storage";
+import { get as localStorageGet,set as localStorageSet } from "local-storage";
 
 const { Option } = Select;
 const { Meta } = Card;
@@ -84,6 +84,7 @@ export default function EditUserInfo(): JSX.Element {
                 userProfileEdit({UserId:localStorageGet("uid"),ProfileUrl:res.data.url}).then(res2=>{
                     if(res.data.message==="OK"){
                         setImageUrl(res.data.url);
+                        localStorageSet("userProfile",res.data.url);
                         message.success("更换头像成功!");
                     }else{
                         message.error("更换头像失败!");
